@@ -1,0 +1,4 @@
+/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles/rebuild_cache.dir
+/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles/edit_cache.dir
+/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles/csc4005_imgui.dir
+/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles/core.dir
