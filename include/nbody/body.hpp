@@ -5,6 +5,7 @@
 
 #include <random>
 #include <utility>
+#include <vector>
 template <typename Container>
 void printVector(const Container &cont)
 {
@@ -153,6 +154,18 @@ public:
             get_y() += get_vy() * elapse;
             handle_wall_collision(position_range, radius);
         }
+        void update_for_tick_thread(
+            double elapse,
+            double position_range,
+            double radius, double collide_x, double collide_y, double collide_vx, double collide_vy)
+        {
+            get_vx() += get_ax() * elapse + collide_vx;
+            get_vy() += get_ay() * elapse + collide_vy;
+            handle_wall_collision(position_range, radius);
+            get_x() += get_vx() * elapse + collide_x;
+            get_y() += get_vy() * elapse + collide_y;
+            handle_wall_collision(position_range, radius);
+        }
     };
 
     BodyPool(size_t size, double position_range, double mass_range) : x(size), y(size), vx(size), vy(size), ax(size), ay(size), m(size)
@@ -251,58 +264,38 @@ public:
             get_body(i).update_for_tick(elapse, position_range, radius);
         }
     }
-
-    void check_and_update_mpi(double gravity, double radius, int rank, int world_size)
+    static void check_and_update_thread(Body i, Body j, double radius, double gravity, std::vector<double> &collide_posX, std::vector<double> &collide_posY, std::vector<double> &collide_vx, std::vector<double> &collide_vy)
     {
-        int n = size();
-        int m = n / world_size, k = n % world_size;
-        int start_left_r = 0, start_right_r = n, end_left_r, end_right_r;
-        // rank < k, tasks = m + 1
-        // rank >= k tasks = m;
-        if (m % 2 == 0)
+        auto delta_x = i.delta_x(j);
+        auto delta_y = i.delta_y(j);
+        auto distance_square = i.distance_square(j);
+        auto ratio = 1 + COLLISION_RATIO;
+        if (distance_square < radius * radius)
         {
-            // m+1 is odd
-            start_right_r = n - rank * m / 2;
-            end_right_r = start_right_r - m / 2;
-
-            if (rank < k)
-            {
-                start_left_r = rank * ((m + 2) / 2);
-                end_left_r = start_left_r + (m + 2) / 2;
-            }
-            else
-            {
-                start_left_r = k * ((m + 2) / 2) + (rank - k) * m / 2;
-                end_left_r = start_left_r + m / 2;
-            }
+            distance_square = radius * radius;
+        }
+        auto distance = i.distance(j);
+        if (distance < radius)
+        {
+            distance = radius;
+        }
+        if (i.collide(j, radius))
+        {
+            auto dot_prod = delta_x * (i.get_vx() - j.get_vx()) + delta_y * (i.get_vy() - j.get_vy());
+            auto scalar = 2 / (i.get_m() + j.get_m()) * dot_prod / distance_square;
+            collide_vx[i.index] -= scalar * delta_x * j.get_m();
+            collide_vy[i.index] -= scalar * delta_y * j.get_m();
+            // i.get_vx() -= scalar * delta_x * j.get_m();
+            // i.get_vy() -= scalar * delta_y * j.get_m();
+            collide_posX[i.index] += delta_x / distance * ratio * radius / 2.0;
+            collide_posY[i.index] += delta_y / distance * ratio * radius / 2.0;
         }
         else
         {
-            start_left_r = rank * (m + 1) / 2;
-            end_left_r = start_left_r + (m + 1) / 2;
-            if (rank < k)
-            {
-                start_right_r = n - rank * (m + 1) / 2;
-                end_right_r = start_right_r - (m - 1) / 2;
-            }
-            else
-            {
-                start_right_r = n - k - rank * (m - 1) / 2;
-                end_right_r = start_right_r - (m - 1) / 2;
-            }
-        }
-
-        printf("I am rank: %d \n N=%d \n start_left_r=%d, end_left_r=%d \n start_right_r=%d, end_right_r=%d \n ===========\n", rank, n, start_left_r, end_left_r, start_right_r, end_right_r);
-        for (int i = start_left_r; i < end_left_r; i++)
-        {
-            for (int j = i + 1; j < n; j++)
-                check_and_update(get_body(i), get_body(j), radius, gravity);
-        }
-
-        for (int i = start_right_r; i < end_right_r; i--)
-        {
-            for (int j = i + 1; j < n; j++)
-                check_and_update(get_body(i), get_body(j), radius, gravity);
+            // update acceleration only when no collision
+            auto scalar = gravity / distance_square / distance;
+            i.get_ax() -= scalar * delta_x * j.get_m();
+            i.get_ay() -= scalar * delta_y * j.get_m();
         }
     }
 };
