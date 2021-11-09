@@ -66,6 +66,8 @@ int main(int argc, char **argv)
             // pool.update_for_tick(elapse, gravity, space, radius);
             std::vector<pthread_t> threads(thread_number);
             std::vector<int> thread_ids(thread_number);
+            pool.clear_acceleration();
+            // step 1;
             for (int i = 0; i < thread_number; i++)
             {
                 thread_ids[i] = i;
@@ -75,6 +77,7 @@ int main(int argc, char **argv)
             {
                 pthread_join(threads[i], NULL);
             }
+            // step 2;
             for (int i = 0; i < thread_number; i++)
             {
                 thread_ids[i] = i;
@@ -103,19 +106,20 @@ void *check_and_update_thread(void *args)
     int n = pool.size();
     int m = n / thread_number, rem = n % thread_number;
     size_t start_body = m * thread_id;
-    size_t end_body = (thread_id == thread_number - 1) ? start_body + m : start_body + m + rem;
+
+    size_t end_body = (thread_id == thread_number - 1) ? start_body + m + rem : start_body + m;
+    if (start_body >= end_body)
+        return NULL;
+    // printf("I am thread %d, start body: %d, end body: %d \n (pool.size: %d)", thread_id, start_body, end_body, n);
     for (size_t i = start_body; i < end_body; i++)
     {
-        // pool.clear_acceleration();
 
-        pool.get_body(i).get_ax() = 0;
-        pool.get_body(i).get_ay() = 0;
-        for (size_t j = 0; j < (size_t)n; j++)
+        // pool.get_body(i).get_ax() = 0;
+        // pool.get_body(i).get_ay() = 0;
+        for (size_t j = i + 1; j < (size_t)n; j++)
         {
-            if (j != i)
-            {
-                pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
-            }
+            // if (i != j)
+            pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
         }
     }
 
@@ -124,12 +128,13 @@ void *check_and_update_thread(void *args)
 void *update_for_tick_thread(void *args)
 {
     int thread_id = *((int *)args);
-
     int m = pool.size() / thread_number;
     int rem = pool.size() % thread_number;
     size_t start_body = m * thread_id;
-    size_t end_body = (thread_id == thread_number - 1) ? start_body + m : start_body + m + rem;
-
+    size_t end_body = (thread_id == thread_number - 1) ? start_body + m + rem : start_body + m;
+    if (start_body >= end_body)
+        return NULL;
+    // printf("thread %d, update position... \n", thread_id);
     for (size_t i = start_body; i < end_body; i++)
     {
         pool.get_body(i).update_for_tick(elapse, space, radius);
