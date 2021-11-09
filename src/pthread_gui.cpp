@@ -6,14 +6,18 @@
 #include <vector>
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 void *check_and_update_thread(void *args);
 void *update_for_tick_thread(void *args);
 int thread_number = 0;
+
 static float gravity = 100;
 static float space = 800;
 static float radius = 5;
 static int bodies = 20;
+std::vector<double> collide_posX(bodies);
+std::vector<double> collide_posY(bodies);
+std::vector<double> collide_vx(bodies);
+std::vector<double> collide_vy(bodies);
 static float elapse = 0.001;
 static ImVec4 color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);
 static float max_mass = 50;
@@ -58,6 +62,10 @@ int main(int argc, char **argv)
             bodies = current_bodies;
             max_mass = current_max_mass;
             pool = BodyPool{static_cast<size_t>(bodies), space, max_mass};
+            collide_posX.resize(bodies);
+            collide_posY.resize(bodies);
+            collide_vx.resize(bodies);
+            collide_vy.resize(bodies);
         }
         {
             const ImVec2 p = ImGui::GetCursorScreenPos();
@@ -107,11 +115,14 @@ void *check_and_update_thread(void *args)
     // printf("I am thread %d, start body: %d, end body: %d \n (pool.size: %d)", thread_id, start_body, end_body, n);
     for (int i = start_body; i < end_body; i++)
     {
-        for (size_t j = i + 1; j < pool.size(); j++)
+        collide_posX[i] = 0;
+        collide_posY[i] = 0;
+        collide_vx[i] = 0;
+        collide_vy[i] = 0;
+        for (size_t j = 0; j < pool.size(); j++)
         {
-            pthread_mutex_lock(&mutex);
-            pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
-            pthread_mutex_unlock(&mutex);
+            if (i != j)
+                pool.check_and_update_thread(pool.get_body(i), pool.get_body(j), radius, gravity, collide_posX, collide_posY, collide_vx, collide_vy);
         }
     }
 
@@ -127,7 +138,7 @@ void *update_for_tick_thread(void *args)
     // printf("thread %d, update position... \n", thread_id);
     for (int i = start_body; i < end_body; i++)
     {
-        pool.get_body(i).update_for_tick(elapse, space, radius);
+        pool.get_body(i).update_for_tick_thread(elapse, space, radius, collide_posX[i], collide_posY[i], collide_vx[i], collide_vy[i]);
     }
     return nullptr;
 }
