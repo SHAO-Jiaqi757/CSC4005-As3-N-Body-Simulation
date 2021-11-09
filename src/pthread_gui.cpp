@@ -6,10 +6,7 @@
 #include <vector>
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
-struct thread_args
-{
-    int thread_id;
-};
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 void *check_and_update_thread(void *args);
 void *update_for_tick_thread(void *args);
 int thread_number = 0;
@@ -21,6 +18,7 @@ static float elapse = 0.001;
 static ImVec4 color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);
 static float max_mass = 50;
 BodyPool pool(static_cast<size_t>(bodies), space, max_mass);
+void get_slice(int &start_body, int &end_body, int thread_id, int thread_number);
 int main(int argc, char **argv)
 {
     // UNUSED(argc, argv);
@@ -102,24 +100,18 @@ int main(int argc, char **argv)
 void *check_and_update_thread(void *args)
 {
     int thread_id = *((int *)args);
-
-    int n = pool.size();
-    int m = n / thread_number, rem = n % thread_number;
-    size_t start_body = m * thread_id;
-
-    size_t end_body = (thread_id == thread_number - 1) ? start_body + m + rem : start_body + m;
+    int start_body, end_body;
+    get_slice(start_body, end_body, thread_id, thread_number);
     if (start_body >= end_body)
         return NULL;
     // printf("I am thread %d, start body: %d, end body: %d \n (pool.size: %d)", thread_id, start_body, end_body, n);
-    for (size_t i = start_body; i < end_body; i++)
+    for (int i = start_body; i < end_body; i++)
     {
-
-        // pool.get_body(i).get_ax() = 0;
-        // pool.get_body(i).get_ay() = 0;
-        for (size_t j = i + 1; j < (size_t)n; j++)
+        for (size_t j = i + 1; j < pool.size(); j++)
         {
-            // if (i != j)
+            pthread_mutex_lock(&mutex);
             pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
+            pthread_mutex_unlock(&mutex);
         }
     }
 
@@ -128,16 +120,21 @@ void *check_and_update_thread(void *args)
 void *update_for_tick_thread(void *args)
 {
     int thread_id = *((int *)args);
-    int m = pool.size() / thread_number;
-    int rem = pool.size() % thread_number;
-    size_t start_body = m * thread_id;
-    size_t end_body = (thread_id == thread_number - 1) ? start_body + m + rem : start_body + m;
+    int start_body, end_body;
+    get_slice(start_body, end_body, thread_id, thread_number);
     if (start_body >= end_body)
         return NULL;
     // printf("thread %d, update position... \n", thread_id);
-    for (size_t i = start_body; i < end_body; i++)
+    for (int i = start_body; i < end_body; i++)
     {
         pool.get_body(i).update_for_tick(elapse, space, radius);
     }
     return nullptr;
+}
+void get_slice(int &start_body, int &end_body, int thread_id, int thread_number)
+{
+    int m = pool.size() / thread_number;
+    int rem = pool.size() % thread_number;
+    start_body = (thread_id < rem) ? (m + 1) * thread_id : rem + m * thread_id;
+    end_body = (thread_id < rem) ? start_body + (m + 1) : start_body + m;
 }
