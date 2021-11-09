@@ -62,10 +62,10 @@ RM = /usr/local/Cellar/cmake/3.19.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256"
+CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build"
+CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/core.dir/depend.make
@@ -78,120 +78,120 @@ include CMakeFiles/core.dir/flags.make
 
 CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o: ../imgui/backends/imgui_impl_opengl2.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/backends/imgui_impl_opengl2.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_opengl2.cpp"
 
 CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/backends/imgui_impl_opengl2.cpp" > CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_opengl2.cpp" > CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.i
 
 CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/backends/imgui_impl_opengl2.cpp" -o CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_opengl2.cpp" -o CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.s
 
 CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o: ../imgui/backends/imgui_impl_sdl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/backends/imgui_impl_sdl.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_sdl.cpp"
 
 CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/backends/imgui_impl_sdl.cpp" > CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_sdl.cpp" > CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.i
 
 CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/backends/imgui_impl_sdl.cpp" -o CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_sdl.cpp" -o CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.s
 
 CMakeFiles/core.dir/imgui/imgui.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/imgui.cpp.o: ../imgui/imgui.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/core.dir/imgui/imgui.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/core.dir/imgui/imgui.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui.cpp"
 
 CMakeFiles/core.dir/imgui/imgui.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/imgui.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui.cpp" > CMakeFiles/core.dir/imgui/imgui.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui.cpp" > CMakeFiles/core.dir/imgui/imgui.cpp.i
 
 CMakeFiles/core.dir/imgui/imgui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/imgui.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui.cpp" -o CMakeFiles/core.dir/imgui/imgui.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui.cpp" -o CMakeFiles/core.dir/imgui/imgui.cpp.s
 
 CMakeFiles/core.dir/imgui/imgui_demo.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/imgui_demo.cpp.o: ../imgui/imgui_demo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/core.dir/imgui/imgui_demo.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_demo.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_demo.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/core.dir/imgui/imgui_demo.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_demo.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_demo.cpp"
 
 CMakeFiles/core.dir/imgui/imgui_demo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/imgui_demo.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_demo.cpp" > CMakeFiles/core.dir/imgui/imgui_demo.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_demo.cpp" > CMakeFiles/core.dir/imgui/imgui_demo.cpp.i
 
 CMakeFiles/core.dir/imgui/imgui_demo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/imgui_demo.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_demo.cpp" -o CMakeFiles/core.dir/imgui/imgui_demo.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_demo.cpp" -o CMakeFiles/core.dir/imgui/imgui_demo.cpp.s
 
 CMakeFiles/core.dir/imgui/imgui_draw.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/imgui_draw.cpp.o: ../imgui/imgui_draw.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/core.dir/imgui/imgui_draw.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_draw.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_draw.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/core.dir/imgui/imgui_draw.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_draw.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_draw.cpp"
 
 CMakeFiles/core.dir/imgui/imgui_draw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/imgui_draw.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_draw.cpp" > CMakeFiles/core.dir/imgui/imgui_draw.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_draw.cpp" > CMakeFiles/core.dir/imgui/imgui_draw.cpp.i
 
 CMakeFiles/core.dir/imgui/imgui_draw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/imgui_draw.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_draw.cpp" -o CMakeFiles/core.dir/imgui/imgui_draw.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_draw.cpp" -o CMakeFiles/core.dir/imgui/imgui_draw.cpp.s
 
 CMakeFiles/core.dir/imgui/imgui_tables.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/imgui_tables.cpp.o: ../imgui/imgui_tables.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/core.dir/imgui/imgui_tables.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_tables.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_tables.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/core.dir/imgui/imgui_tables.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_tables.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_tables.cpp"
 
 CMakeFiles/core.dir/imgui/imgui_tables.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/imgui_tables.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_tables.cpp" > CMakeFiles/core.dir/imgui/imgui_tables.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_tables.cpp" > CMakeFiles/core.dir/imgui/imgui_tables.cpp.i
 
 CMakeFiles/core.dir/imgui/imgui_tables.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/imgui_tables.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_tables.cpp" -o CMakeFiles/core.dir/imgui/imgui_tables.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_tables.cpp" -o CMakeFiles/core.dir/imgui/imgui_tables.cpp.s
 
 CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o: ../imgui/imgui_widgets.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_widgets.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_widgets.cpp"
 
 CMakeFiles/core.dir/imgui/imgui_widgets.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/imgui_widgets.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_widgets.cpp" > CMakeFiles/core.dir/imgui/imgui_widgets.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_widgets.cpp" > CMakeFiles/core.dir/imgui/imgui_widgets.cpp.i
 
 CMakeFiles/core.dir/imgui/imgui_widgets.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/imgui_widgets.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/imgui_widgets.cpp" -o CMakeFiles/core.dir/imgui/imgui_widgets.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/imgui_widgets.cpp" -o CMakeFiles/core.dir/imgui/imgui_widgets.cpp.s
 
 CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o: ../imgui/misc/cpp/imgui_stdlib.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/misc/cpp/imgui_stdlib.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/misc/cpp/imgui_stdlib.cpp"
 
 CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/misc/cpp/imgui_stdlib.cpp" > CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/misc/cpp/imgui_stdlib.cpp" > CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.i
 
 CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/misc/cpp/imgui_stdlib.cpp" -o CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/misc/cpp/imgui_stdlib.cpp" -o CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.s
 
 CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o: CMakeFiles/core.dir/flags.make
 CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o: ../imgui/misc/freetype/imgui_freetype.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/misc/freetype/imgui_freetype.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/misc/freetype/imgui_freetype.cpp"
 
 CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/misc/freetype/imgui_freetype.cpp" > CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/misc/freetype/imgui_freetype.cpp" > CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.i
 
 CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/misc/freetype/imgui_freetype.cpp" -o CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/misc/freetype/imgui_freetype.cpp" -o CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s
 
 # Object files for target core
 core_OBJECTS = \
@@ -219,7 +219,7 @@ libcore.a: CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o
 libcore.a: CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o
 libcore.a: CMakeFiles/core.dir/build.make
 libcore.a: CMakeFiles/core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libcore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libcore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core.dir/link.txt --verbose=$(VERBOSE)
 
@@ -233,6 +233,6 @@ CMakeFiles/core.dir/clean:
 .PHONY : CMakeFiles/core.dir/clean
 
 CMakeFiles/core.dir/depend:
-	cd "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles/core.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles/core.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/core.dir/depend
 

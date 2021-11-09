@@ -63,17 +63,19 @@ RM = /usr/local/Cellar/cmake/3.19.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256"
+CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build"
+CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build"
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/csc4005_imgui.dir/all
 all: CMakeFiles/core.dir/all
+all: CMakeFiles/sequential_gui.dir/all
+all: CMakeFiles/pthread_gui.dir/all
+all: CMakeFiles/mpi_gui.dir/all
 
 .PHONY : all
 
@@ -83,37 +85,12 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/csc4005_imgui.dir/clean
 clean: CMakeFiles/core.dir/clean
+clean: CMakeFiles/sequential_gui.dir/clean
+clean: CMakeFiles/pthread_gui.dir/clean
+clean: CMakeFiles/mpi_gui.dir/clean
 
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/csc4005_imgui.dir
-
-# All Build rule for target.
-CMakeFiles/csc4005_imgui.dir/all: CMakeFiles/core.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=11,12,13 "Built target csc4005_imgui"
-.PHONY : CMakeFiles/csc4005_imgui.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/csc4005_imgui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" 13
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/csc4005_imgui.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" 0
-.PHONY : CMakeFiles/csc4005_imgui.dir/rule
-
-# Convenience name for target.
-csc4005_imgui: CMakeFiles/csc4005_imgui.dir/rule
-
-.PHONY : csc4005_imgui
-
-# clean rule for target.
-CMakeFiles/csc4005_imgui.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/clean
-.PHONY : CMakeFiles/csc4005_imgui.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/core.dir
@@ -122,14 +99,14 @@ CMakeFiles/csc4005_imgui.dir/clean:
 CMakeFiles/core.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target core"
 .PHONY : CMakeFiles/core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/core.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
 .PHONY : CMakeFiles/core.dir/rule
 
 # Convenience name for target.
@@ -141,6 +118,87 @@ core: CMakeFiles/core.dir/rule
 CMakeFiles/core.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/clean
 .PHONY : CMakeFiles/core.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/sequential_gui.dir
+
+# All Build rule for target.
+CMakeFiles/sequential_gui.dir/all: CMakeFiles/core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=17,18,19 "Built target sequential_gui"
+.PHONY : CMakeFiles/sequential_gui.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/sequential_gui.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 13
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sequential_gui.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
+.PHONY : CMakeFiles/sequential_gui.dir/rule
+
+# Convenience name for target.
+sequential_gui: CMakeFiles/sequential_gui.dir/rule
+
+.PHONY : sequential_gui
+
+# clean rule for target.
+CMakeFiles/sequential_gui.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/clean
+.PHONY : CMakeFiles/sequential_gui.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/pthread_gui.dir
+
+# All Build rule for target.
+CMakeFiles/pthread_gui.dir/all: CMakeFiles/core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=14,15,16 "Built target pthread_gui"
+.PHONY : CMakeFiles/pthread_gui.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/pthread_gui.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 13
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pthread_gui.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
+.PHONY : CMakeFiles/pthread_gui.dir/rule
+
+# Convenience name for target.
+pthread_gui: CMakeFiles/pthread_gui.dir/rule
+
+.PHONY : pthread_gui
+
+# clean rule for target.
+CMakeFiles/pthread_gui.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/clean
+.PHONY : CMakeFiles/pthread_gui.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/mpi_gui.dir
+
+# All Build rule for target.
+CMakeFiles/mpi_gui.dir/all: CMakeFiles/core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=11,12,13 "Built target mpi_gui"
+.PHONY : CMakeFiles/mpi_gui.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/mpi_gui.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 13
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/mpi_gui.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
+.PHONY : CMakeFiles/mpi_gui.dir/rule
+
+# Convenience name for target.
+mpi_gui: CMakeFiles/mpi_gui.dir/rule
+
+.PHONY : mpi_gui
+
+# clean rule for target.
+CMakeFiles/mpi_gui.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/clean
+.PHONY : CMakeFiles/mpi_gui.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

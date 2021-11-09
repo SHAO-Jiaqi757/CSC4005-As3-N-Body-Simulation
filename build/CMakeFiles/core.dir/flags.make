@@ -4,7 +4,7 @@
 # compile CXX with /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_DEFINES = -DImDrawIdx=unsigned
 
-CXX_INCLUDES = -I"/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/include" -I"/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui" -I"/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/imgui/backends" -I/usr/local/Cellar/open-mpi/4.1.1_2/include -isystem /usr/local/Cellar/sdl2/2.0.16/include/SDL2 -isystem /Library/Frameworks/Mono.framework/Headers -isystem /usr/local/include/freetype2 -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks
+CXX_INCLUDES = -I"/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/include" -I"/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui" -I"/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends" -I/usr/local/Cellar/open-mpi/4.1.1_2/include -isystem /usr/local/Cellar/sdl2/2.0.16/include/SDL2 -isystem /Library/Frameworks/Mono.framework/Headers -isystem /usr/local/include/freetype2 -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks
 
 CXX_FLAGS =  -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++2a
 

@@ -67,10 +67,10 @@ RM = /usr/local/Cellar/cmake/3.19.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256"
+CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build"
+CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/code/HW/As3_119010256/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -130,19 +130,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named csc4005_imgui
-
-# Build rule for target.
-csc4005_imgui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 csc4005_imgui
-.PHONY : csc4005_imgui
-
-# fast build rule for target.
-csc4005_imgui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/build
-.PHONY : csc4005_imgui/fast
-
-#=============================================================================
 # Target rules for targets named core
 
 # Build rule for target.
@@ -154,6 +141,45 @@ core: cmake_check_build_system
 core/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/build
 .PHONY : core/fast
+
+#=============================================================================
+# Target rules for targets named sequential_gui
+
+# Build rule for target.
+sequential_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sequential_gui
+.PHONY : sequential_gui
+
+# fast build rule for target.
+sequential_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/build
+.PHONY : sequential_gui/fast
+
+#=============================================================================
+# Target rules for targets named pthread_gui
+
+# Build rule for target.
+pthread_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pthread_gui
+.PHONY : pthread_gui
+
+# fast build rule for target.
+pthread_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/build
+.PHONY : pthread_gui/fast
+
+#=============================================================================
+# Target rules for targets named mpi_gui
+
+# Build rule for target.
+mpi_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mpi_gui
+.PHONY : mpi_gui
+
+# fast build rule for target.
+mpi_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/build
+.PHONY : mpi_gui/fast
 
 imgui/backends/imgui_impl_opengl2.o: imgui/backends/imgui_impl_opengl2.cpp.o
 
@@ -404,7 +430,9 @@ src/graphic.o: src/graphic.cpp.o
 
 # target to build an object file
 src/graphic.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/src/graphic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.o
 .PHONY : src/graphic.cpp.o
 
 src/graphic.i: src/graphic.cpp.i
@@ -413,7 +441,9 @@ src/graphic.i: src/graphic.cpp.i
 
 # target to preprocess a source file
 src/graphic.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/src/graphic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.i
 .PHONY : src/graphic.cpp.i
 
 src/graphic.s: src/graphic.cpp.s
@@ -422,35 +452,91 @@ src/graphic.s: src/graphic.cpp.s
 
 # target to generate assembly for a file
 src/graphic.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/src/graphic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.s
 .PHONY : src/graphic.cpp.s
 
-src/main.o: src/main.cpp.o
+src/mpi_gui.o: src/mpi_gui.cpp.o
 
-.PHONY : src/main.o
+.PHONY : src/mpi_gui.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/mpi_gui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/mpi_gui.cpp.o
+.PHONY : src/mpi_gui.cpp.o
 
-src/main.i: src/main.cpp.i
+src/mpi_gui.i: src/mpi_gui.cpp.i
 
-.PHONY : src/main.i
+.PHONY : src/mpi_gui.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/mpi_gui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/mpi_gui.cpp.i
+.PHONY : src/mpi_gui.cpp.i
 
-src/main.s: src/main.cpp.s
+src/mpi_gui.s: src/mpi_gui.cpp.s
 
-.PHONY : src/main.s
+.PHONY : src/mpi_gui.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csc4005_imgui.dir/build.make CMakeFiles/csc4005_imgui.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/mpi_gui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/mpi_gui.cpp.s
+.PHONY : src/mpi_gui.cpp.s
+
+src/pthread_gui.o: src/pthread_gui.cpp.o
+
+.PHONY : src/pthread_gui.o
+
+# target to build an object file
+src/pthread_gui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_gui.cpp.o
+.PHONY : src/pthread_gui.cpp.o
+
+src/pthread_gui.i: src/pthread_gui.cpp.i
+
+.PHONY : src/pthread_gui.i
+
+# target to preprocess a source file
+src/pthread_gui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_gui.cpp.i
+.PHONY : src/pthread_gui.cpp.i
+
+src/pthread_gui.s: src/pthread_gui.cpp.s
+
+.PHONY : src/pthread_gui.s
+
+# target to generate assembly for a file
+src/pthread_gui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_gui.cpp.s
+.PHONY : src/pthread_gui.cpp.s
+
+src/sequential_gui.o: src/sequential_gui.cpp.o
+
+.PHONY : src/sequential_gui.o
+
+# target to build an object file
+src/sequential_gui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/sequential_gui.cpp.o
+.PHONY : src/sequential_gui.cpp.o
+
+src/sequential_gui.i: src/sequential_gui.cpp.i
+
+.PHONY : src/sequential_gui.i
+
+# target to preprocess a source file
+src/sequential_gui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/sequential_gui.cpp.i
+.PHONY : src/sequential_gui.cpp.i
+
+src/sequential_gui.s: src/sequential_gui.cpp.s
+
+.PHONY : src/sequential_gui.s
+
+# target to generate assembly for a file
+src/sequential_gui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/sequential_gui.cpp.s
+.PHONY : src/sequential_gui.cpp.s
 
 # Help Target
 help:
@@ -461,7 +547,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... core"
-	@echo "... csc4005_imgui"
+	@echo "... mpi_gui"
+	@echo "... pthread_gui"
+	@echo "... sequential_gui"
 	@echo "... imgui/backends/imgui_impl_opengl2.o"
 	@echo "... imgui/backends/imgui_impl_opengl2.i"
 	@echo "... imgui/backends/imgui_impl_opengl2.s"
@@ -492,9 +580,15 @@ help:
 	@echo "... src/graphic.o"
 	@echo "... src/graphic.i"
 	@echo "... src/graphic.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
+	@echo "... src/mpi_gui.o"
+	@echo "... src/mpi_gui.i"
+	@echo "... src/mpi_gui.s"
+	@echo "... src/pthread_gui.o"
+	@echo "... src/pthread_gui.i"
+	@echo "... src/pthread_gui.s"
+	@echo "... src/sequential_gui.o"
+	@echo "... src/sequential_gui.i"
+	@echo "... src/sequential_gui.s"
 .PHONY : help
 
 
