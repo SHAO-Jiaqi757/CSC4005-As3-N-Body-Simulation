@@ -8,9 +8,6 @@
 
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
-void master(BodyPool &pool, float elapse, float gravity, float space, float radius);
-void slave();
-
 void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius);
 void slaves();
 void get_slice(int &start_body, int &end_body, int nbody, int rank, int total_rank); // get subtask, rank r get job from start_body to end_body;
