@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 project(csc4005_imgui)
 
 set(CMAKE_CXX_STANDARD 17)
-
+set(CMAKE_CXX_FLAGS "-fsanitize=thread")
 find_package(SDL2 REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(MPI REQUIRED)
