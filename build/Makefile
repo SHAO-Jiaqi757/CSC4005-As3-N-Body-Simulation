@@ -130,30 +130,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named core
+# Target rules for targets named mpi_gui
 
 # Build rule for target.
-core: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core
-.PHONY : core
+mpi_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mpi_gui
+.PHONY : mpi_gui
 
 # fast build rule for target.
-core/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/build
-.PHONY : core/fast
-
-#=============================================================================
-# Target rules for targets named sequential_gui
-
-# Build rule for target.
-sequential_gui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sequential_gui
-.PHONY : sequential_gui
-
-# fast build rule for target.
-sequential_gui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/build
-.PHONY : sequential_gui/fast
+mpi_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/build
+.PHONY : mpi_gui/fast
 
 #=============================================================================
 # Target rules for targets named pthread_gui
@@ -169,17 +156,43 @@ pthread_gui/fast:
 .PHONY : pthread_gui/fast
 
 #=============================================================================
-# Target rules for targets named mpi_gui
+# Target rules for targets named openmp_gui
 
 # Build rule for target.
-mpi_gui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mpi_gui
-.PHONY : mpi_gui
+openmp_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 openmp_gui
+.PHONY : openmp_gui
 
 # fast build rule for target.
-mpi_gui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/build
-.PHONY : mpi_gui/fast
+openmp_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/build
+.PHONY : openmp_gui/fast
+
+#=============================================================================
+# Target rules for targets named sequential_gui
+
+# Build rule for target.
+sequential_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sequential_gui
+.PHONY : sequential_gui
+
+# fast build rule for target.
+sequential_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/build
+.PHONY : sequential_gui/fast
+
+#=============================================================================
+# Target rules for targets named core
+
+# Build rule for target.
+core: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core
+.PHONY : core
+
+# fast build rule for target.
+core/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/build
+.PHONY : core/fast
 
 imgui/backends/imgui_impl_opengl2.o: imgui/backends/imgui_impl_opengl2.cpp.o
 
@@ -430,9 +443,10 @@ src/graphic.o: src/graphic.cpp.o
 
 # target to build an object file
 src/graphic.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/graphic.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.o
 .PHONY : src/graphic.cpp.o
 
 src/graphic.i: src/graphic.cpp.i
@@ -441,9 +455,10 @@ src/graphic.i: src/graphic.cpp.i
 
 # target to preprocess a source file
 src/graphic.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/graphic.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.i
 .PHONY : src/graphic.cpp.i
 
 src/graphic.s: src/graphic.cpp.s
@@ -452,9 +467,10 @@ src/graphic.s: src/graphic.cpp.s
 
 # target to generate assembly for a file
 src/graphic.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/graphic.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.s
 .PHONY : src/graphic.cpp.s
 
 src/mpi_gui.o: src/mpi_gui.cpp.o
@@ -483,6 +499,33 @@ src/mpi_gui.s: src/mpi_gui.cpp.s
 src/mpi_gui.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/mpi_gui.cpp.s
 .PHONY : src/mpi_gui.cpp.s
+
+src/openmp_gui.o: src/openmp_gui.cpp.o
+
+.PHONY : src/openmp_gui.o
+
+# target to build an object file
+src/openmp_gui.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/openmp_gui.cpp.o
+.PHONY : src/openmp_gui.cpp.o
+
+src/openmp_gui.i: src/openmp_gui.cpp.i
+
+.PHONY : src/openmp_gui.i
+
+# target to preprocess a source file
+src/openmp_gui.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/openmp_gui.cpp.i
+.PHONY : src/openmp_gui.cpp.i
+
+src/openmp_gui.s: src/openmp_gui.cpp.s
+
+.PHONY : src/openmp_gui.s
+
+# target to generate assembly for a file
+src/openmp_gui.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/openmp_gui.cpp.s
+.PHONY : src/openmp_gui.cpp.s
 
 src/pthread_gui.o: src/pthread_gui.cpp.o
 
@@ -548,6 +591,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... core"
 	@echo "... mpi_gui"
+	@echo "... openmp_gui"
 	@echo "... pthread_gui"
 	@echo "... sequential_gui"
 	@echo "... imgui/backends/imgui_impl_opengl2.o"
@@ -583,6 +627,9 @@ help:
 	@echo "... src/mpi_gui.o"
 	@echo "... src/mpi_gui.i"
 	@echo "... src/mpi_gui.s"
+	@echo "... src/openmp_gui.o"
+	@echo "... src/openmp_gui.i"
+	@echo "... src/openmp_gui.s"
 	@echo "... src/pthread_gui.o"
 	@echo "... src/pthread_gui.i"
 	@echo "... src/pthread_gui.s"

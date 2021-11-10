@@ -31,6 +31,8 @@ add_library(core STATIC ${IMGUI_SRC})
 add_executable(sequential_gui src/sequential_gui.cpp src/graphic.cpp )
 add_executable(mpi_gui src/mpi_gui.cpp src/graphic.cpp )
 add_executable(pthread_gui src/pthread_gui.cpp src/graphic.cpp )
+add_executable(openmp_gui src/openmp_gui.cpp src/graphic.cpp )
+
 get_filename_component(FONT_PATH imgui/misc/fonts/DroidSans.ttf ABSOLUTE)
 target_link_libraries(core PUBLIC
         Freetype::Freetype SDL2::SDL2 OpenGL::GL ${CMAKE_DL_LIBS} Threads::Threads ${MPI_CXX_LIBRARIES})
@@ -38,10 +40,13 @@ target_link_libraries(core PUBLIC
 target_link_libraries(sequential_gui core)
 target_link_libraries(mpi_gui core)
 target_link_libraries(pthread_gui core)
+target_link_libraries(openmp_gui core)
+target_link_libraries(openmp_gui  ${OpenMP_CXX_LIBRARIES})
 
 target_compile_options(sequential_gui PRIVATE -Wextra -Wpedantic)
 target_compile_options(mpi_gui PRIVATE -Wextra -Wpedantic)
 target_compile_options(pthread_gui PRIVATE -Wextra -Wpedantic)
+target_compile_options(openmp_gui PRIVATE -Wextra -Wpedantic)
 
 target_compile_definitions(core PUBLIC -DImDrawIdx=unsigned)
 
@@ -51,5 +56,7 @@ if (WIN32)
     target_link_options(sequential_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
         target_link_options(mpi_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
         target_link_options(pthread_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
+                target_link_options(openmp_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
+
 
 endif()
