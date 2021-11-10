@@ -10,6 +10,7 @@ template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
 void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius);
 void slaves();
+void scatter_pool(BodyPool &pool, int bodies, int rank, int comm_size);
 void get_slice(int &start_body, int &end_body, int nbody, int rank, int total_rank); // get subtask, rank r get job from start_body to end_body;
 void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity);
 void update_for_tick_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double elapse, double space, double radius);
@@ -216,4 +217,35 @@ void update_master_pool(BodyPool &master_pool, BodyPool &slave_pool, int start_b
         master_pool.get_body(i).get_vy() = slave_pool.get_body(i).get_vy();
         master_pool.get_body(i).get_vx() = slave_pool.get_body(i).get_vx();
     }
+}
+void scatter_pool(BodyPool &pool, int bodies, int rank, int comm_size)
+{
+    std::vector<int> sendcounts, displs;
+    int recv_buff_size;
+    if (rank == 0)
+    {
+        for (int i = 0; i < comm_size; i++)
+        {
+            int start_body, end_body;
+            get_slice(start_body, end_body, bodies, rank, comm_size);
+            sendcounts.push_back(end_body - start_body);
+            displs.push_back(start_body);
+        }
+    }
+    recv_buff_size = (rank < bodies % comm_size) ? bodies / comm_size + 1 : bodies / comm_size;
+    std::vector<double> recv_x(recv_buff_size);
+    std::vector<double> recv_y(recv_buff_size);
+    std::vector<double> recv_ax(recv_buff_size);
+    std::vector<double> recv_ay(recv_buff_size);
+    std::vector<double> recv_vx(recv_buff_size);
+    std::vector<double> recv_vy(recv_buff_size);
+    std::vector<double> recv_m(recv_buff_size);
+    MPI_Bcast(pool.x.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(pool.y.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(pool.vx.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(pool.vy.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(pool.m.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+    MPI_Scatterv(pool.ax.data(), sendcounts.data(), displs.data(), MPI_DOUBLE, recv_ax.data(), recv_buff_size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Scatterv(pool.ay.data(), sendcounts.data(), displs.data(), MPI_DOUBLE, recv_ay.data(), recv_buff_size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 }
