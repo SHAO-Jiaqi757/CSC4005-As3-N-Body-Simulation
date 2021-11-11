@@ -72,6 +72,7 @@ CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/openmp_mpi_gui.dir/all
 all: CMakeFiles/mpi_gui.dir/all
 all: CMakeFiles/pthread_gui.dir/all
 all: CMakeFiles/openmp_gui.dir/all
@@ -86,6 +87,7 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/openmp_mpi_gui.dir/clean
 clean: CMakeFiles/mpi_gui.dir/clean
 clean: CMakeFiles/pthread_gui.dir/clean
 clean: CMakeFiles/openmp_gui.dir/clean
@@ -93,6 +95,33 @@ clean: CMakeFiles/sequential_gui.dir/clean
 clean: CMakeFiles/core.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/openmp_mpi_gui.dir
+
+# All Build rule for target.
+CMakeFiles/openmp_mpi_gui.dir/all: CMakeFiles/core.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=18,19,20 "Built target openmp_mpi_gui"
+.PHONY : CMakeFiles/openmp_mpi_gui.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/openmp_mpi_gui.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 14
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/openmp_mpi_gui.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
+.PHONY : CMakeFiles/openmp_mpi_gui.dir/rule
+
+# Convenience name for target.
+openmp_mpi_gui: CMakeFiles/openmp_mpi_gui.dir/rule
+
+.PHONY : openmp_mpi_gui
+
+# clean rule for target.
+CMakeFiles/openmp_mpi_gui.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/clean
+.PHONY : CMakeFiles/openmp_mpi_gui.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/mpi_gui.dir
@@ -128,7 +157,7 @@ CMakeFiles/mpi_gui.dir/clean:
 CMakeFiles/pthread_gui.dir/all: CMakeFiles/core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=18,19,20,21 "Built target pthread_gui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=21,22,23,24 "Built target pthread_gui"
 .PHONY : CMakeFiles/pthread_gui.dir/all
 
 # Build rule for subdir invocation for target.
@@ -182,7 +211,7 @@ CMakeFiles/openmp_gui.dir/clean:
 CMakeFiles/sequential_gui.dir/all: CMakeFiles/core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=22,23,24 "Built target sequential_gui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=25,26,27 "Built target sequential_gui"
 .PHONY : CMakeFiles/sequential_gui.dir/all
 
 # Build rule for subdir invocation for target.

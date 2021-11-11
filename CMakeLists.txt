@@ -1,69 +1,41 @@
 cmake_minimum_required(VERSION 3.2)
-project(csc4005_imgui)
+project(as3_bench)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "-fsanitize=thread")
-find_package(SDL2 REQUIRED)
-find_package(Freetype REQUIRED)
 find_package(MPI REQUIRED)
 find_package(Threads REQUIRED)
 set(CMAKE_CXX_STANDARD 20)
-set(OpenGL_GL_PREFERENCE "GLVND")
-find_package(OpenGL REQUIRED)
 
 include_directories(
         include
-        imgui
-        imgui/backends
-        ${SDL2_INCLUDE_DIRS}
-        ${FREETYPE_INCLUDE_DIRS}
         ${MPI_CXX_INCLUDE_DIRS})
 
-file(GLOB IMGUI_SRC
-        imgui/*.cpp
-        imgui/backends/imgui_impl_sdl.cpp
-        imgui/backends/imgui_impl_opengl2.cpp
-        imgui/misc/freetype/imgui_freetype.cpp
-        imgui/misc/cpp/imgui_stdlib.cpp
-        )
-add_library(core STATIC ${IMGUI_SRC} src/pthread_barrier.c)
+add_library(core STATIC src/pthread_barrier.c)
 
 
-add_executable(sequential_gui src/sequential_gui.cpp src/graphic.cpp )
-add_executable(mpi_gui src/mpi_gui.cpp src/graphic.cpp )
-add_executable(pthread_gui src/pthread_gui.cpp src/graphic.cpp src/pthread_barrier.c )
-add_executable(openmp_gui src/openmp_gui.cpp src/graphic.cpp )
-add_executable(sequential_gui src/openmp_mpi_gui.cpp src/graphic.cpp )
+add_executable(sequential src/sequential.cpp )
+add_executable(mpi src/mpi.cpp )
+add_executable(pthread src/pthread.cpp src/pthread_barrier.c )
+add_executable(openmp src/openmp.cpp )
+add_executable(openmp_mpi src/openmp_mpi.cpp )
 
 
-get_filename_component(FONT_PATH imgui/misc/fonts/DroidSans.ttf ABSOLUTE)
 target_link_libraries(core PUBLIC
-        Freetype::Freetype SDL2::SDL2 OpenGL::GL ${CMAKE_DL_LIBS} Threads::Threads ${MPI_CXX_LIBRARIES})
+        Threads::Threads ${MPI_CXX_LIBRARIES})
 
-target_link_libraries(sequential_gui core)
-target_link_libraries(mpi_gui core)
-target_link_libraries(pthread_gui core)
-target_link_libraries(openmp_gui core)
-target_link_libraries(openmp_gui  ${OpenMP_CXX_LIBRARIES})
-target_link_libraries(openmp_mpi_gui core)
-target_link_libraries(openmp_mpi_gui  ${OpenMP_CXX_LIBRARIES})
+target_link_libraries(sequential core)
+target_link_libraries(mpi core)
+target_link_libraries(pthread core)
+target_link_libraries(openmp core)
+target_link_libraries(openmp  ${OpenMP_CXX_LIBRARIES})
+target_link_libraries(openmp_mpi core)
+target_link_libraries(openmp_mpi  ${OpenMP_CXX_LIBRARIES})
 
-target_compile_options(sequential_gui PRIVATE -Wextra -Wpedantic)
-target_compile_options(mpi_gui PRIVATE -Wextra -Wpedantic)
-target_compile_options(pthread_gui PRIVATE -Wextra -Wpedantic)
-target_compile_options(openmp_gui PRIVATE -Wextra -Wpedantic)
-target_compile_options(openmp_mpi_gui PRIVATE -Wextra -Wpedantic)
-
+target_compile_options(sequential PRIVATE -Wextra -Wpedantic)
+target_compile_options(mpi PRIVATE -Wextra -Wpedantic)
+target_compile_options(pthread PRIVATE -Wextra -Wpedantic)
+target_compile_options(openmp PRIVATE -Wextra -Wpedantic)
+target_compile_options(openmp_mpi PRIVATE -Wextra -Wpedantic)
 target_compile_definitions(core PUBLIC -DImDrawIdx=unsigned)
-
-target_compile_definitions(sequential_gui PRIVATE -DFONT_PATH=\"${FONT_PATH}\")
-target_compile_definitions(mpi_gui PRIVATE -DFONT_PATH=\"${FONT_PATH}\")
-if (WIN32)
-    target_link_options(sequential_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-        target_link_options(mpi_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-        target_link_options(pthread_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-                target_link_options(openmp_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-                target_link_options(openmp_mpi_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-
-
 endif()
