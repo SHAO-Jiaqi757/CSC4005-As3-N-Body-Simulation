@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     printf("pthread_number: %d \n", thread_number);
     printf("body: %d \n", bodies);
     printf("iterations: %d \n", iter);
-    printf("speed(ns/iter): %f \n", duration / iter);
+    printf("speed(ns/iter): %lu \n", duration / iter);
 }
 
 void *check_and_update_thread(void *args)
