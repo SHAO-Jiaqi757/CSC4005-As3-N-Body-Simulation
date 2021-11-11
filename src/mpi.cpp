@@ -53,8 +53,8 @@ int main(int argc, char **argv)
         while (current_iter > 0)
         {
             BodyPool pool(static_cast<size_t>(bodies), space, max_mass);
-            master(pool, max_mass, bodies, elapse, gravity, space, radius, current_iter, comm_size);
             current_iter--;
+            master(pool, max_mass, bodies, elapse, gravity, space, radius, current_iter, comm_size);
         }
         auto end = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
@@ -84,7 +84,6 @@ void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, do
         return;
     for (int i = start_body; i < end_body; i++)
     {
-
         for (int j = 0; j < nbody; j++)
         {
             pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
@@ -111,10 +110,11 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
     Info globalInfo = {space, (float)bodies, max_mass, gravity, elapse, radius, (float)iter};
 
     MPI_Bcast(&globalInfo, 1, MPI_Info, 0, MPI_COMM_WORLD);
-
+    if (iter <= 0)
+        return;
     pool.clear_acceleration();
     scatter_pool(pool, bodies);
-    // step 1;
+// step 1;
 #ifdef DEBUG
     check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity);
 
