@@ -10,12 +10,11 @@ template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
 void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius);
 void slaves();
-void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies, std::vector<double> &collide_vy, std::vector<double> &collide_vx, std::vector<double> &collide_x, std::vector<double> &collide_y);
-void scatter_pool(BodyPool &pool, int bodies, std::vector<double> &collide_vy, std::vector<double> &collide_vx, std::vector<double> &collide_x, std::vector<double> &collide_y);
+void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies);
+void scatter_pool(BodyPool &pool, int bodies);
 void get_slice(int &start_body, int &end_body, int nbody, int rank, int total_rank); // get subtask, rank r get job from start_body to end_body;
-void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity, std::vector<double> &collide_vx, std::vector<double> &collide_vy, std::vector<double> &collide_posX, std::vector<double> &collide_posY);
-void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius, std::vector<double> &collide_vx, std::vector<double> &collide_vy, std::vector<double> &collide_posX, std::vector<double> &collide_posY);
-void update_master_pool(BodyPool &master_pool, BodyPool &slave_pool, int start_body, int end_body); // master should update the pool after receiving from slaves;
+void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity);
+void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius);
 struct Info
 {
     float space;
@@ -79,7 +78,6 @@ int main(int argc, char **argv)
         {
             const ImVec2 p = ImGui::GetCursorScreenPos();
             master(pool, max_mass, bodies, elapse, gravity, space, radius);
-
             for (size_t i = 0; i < pool.size(); ++i)
             {
                 auto body = pool.get_body(i);
@@ -99,28 +97,29 @@ int main(int argc, char **argv)
     }
     MPI_Finalize();
 }
-void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity, std::vector<double> &collide_vx, std::vector<double> &collide_vy, std::vector<double> &collide_posX, std::vector<double> &collide_posY)
+void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity)
 {
     int start_body, end_body;
     get_slice(start_body, end_body, nbody, rank, comm_size);
 
     if (start_body >= end_body)
         return;
+#pragma omp parallel for shared(pool)
     for (int i = start_body; i < end_body; i++)
     {
-
         for (int j = 0; j < nbody; j++)
         {
-            pool.check_and_update_thread(pool.get_body(i), pool.get_body(j), radius, gravity, collide_posX, collide_posY, collide_vx, collide_vy);
+            pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
         }
     }
     return;
 }
-void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius, std::vector<double> &collide_vx, std::vector<double> &collide_vy, std::vector<double> &collide_posX, std::vector<double> &collide_posY)
+void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius)
 {
+#pragma omp parallel for shared(pool)
     for (int i = 0; i < nbody; i++)
     {
-        pool.get_body(i).update_for_tick_thread(elapse, space, radius, collide_posX[i], collide_posY[i], collide_vx[i], collide_vy[i]);
+        pool.get_body(i).update_for_tick(elapse, space, radius);
     }
     return;
 }
@@ -135,25 +134,19 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
 
     MPI_Type_contiguous(6, MPI_FLOAT, &MPI_Info);
     MPI_Type_commit(&MPI_Info);
-    MPI_Type_contiguous(7, MPI_DOUBLE, &MPI_BodyPool);
-    MPI_Type_commit(&MPI_BodyPool);
     Info globalInfo = {space, (float)bodies, max_mass, gravity, elapse, radius};
 
     MPI_Bcast(&globalInfo, 1, MPI_Info, 0, MPI_COMM_WORLD);
 
-    std::vector<double> collide_vy(bodies);
-    std::vector<double> collide_vx(bodies);
-    std::vector<double> collide_x(bodies);
-    std::vector<double> collide_y(bodies);
     pool.clear_acceleration();
-    scatter_pool(pool, bodies, collide_vy, collide_vx, collide_x, collide_y);
+    scatter_pool(pool, bodies);
     // step 1;
 #ifdef DEBUG
-    check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity, collide_vx, collide_vy, collide_x, collide_y);
+    check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity);
 
-    sendrecv_results(pool, comm_size, 0, bodies, collide_vy, collide_vx, collide_x, collide_y);
+    sendrecv_results(pool, comm_size, 0, bodies);
     // step2;
-    update_for_tick_mpi(bodies, pool, elapse, space, radius, collide_vx, collide_vy, collide_x, collide_y);
+    update_for_tick_mpi(bodies, pool, elapse, space, radius);
 #endif // DEBUG
 }
 void slaves()
@@ -170,17 +163,14 @@ void slaves()
     int bodies = globalInfo.bodies;
     // printf("Receive %d bodies \n", bodies);
     BodyPool pool(static_cast<size_t>(bodies), globalInfo.space, globalInfo.max_mass);
-    std::vector<double> collide_vy(bodies);
-    std::vector<double> collide_vx(bodies);
-    std::vector<double> collide_x(bodies);
-    std::vector<double> collide_y(bodies);
-    scatter_pool(pool, bodies, collide_vy, collide_vx, collide_x, collide_y); // receive pool, data is ready for calculation
+
+    scatter_pool(pool, bodies); // receive pool, data is ready for calculation
 
 #ifdef DEBUG
     // update pool.ax, pool.ay and record collision in collide_vx, collide_vy, collide_x, collide_y;
-    check_and_update_mpi(rank, bodies, comm_size, pool, globalInfo.radius, globalInfo.gravity, collide_vx, collide_vy, collide_x, collide_y);
+    check_and_update_mpi(rank, bodies, comm_size, pool, globalInfo.radius, globalInfo.gravity);
     // send result to rank 0;
-    sendrecv_results(pool, comm_size, rank, bodies, collide_vy, collide_vx, collide_x, collide_y);
+    sendrecv_results(pool, comm_size, rank, bodies);
 #endif // DEBUG
     return;
 }
@@ -191,19 +181,7 @@ void get_slice(int &start_body, int &end_body, int nbody, int rank, int total_ra
     start_body = (rank < rem) ? (m + 1) * rank : rem + m * rank;
     end_body = (rank < rem) ? start_body + m + 1 : start_body + m;
 }
-void update_master_pool(BodyPool &master_pool, BodyPool &slave_pool, int start_body, int end_body)
-{
-    for (int i = start_body; i < end_body; i++)
-    {
-        master_pool.get_body(i).get_ax() = slave_pool.get_body(i).get_ax();
-        master_pool.get_body(i).get_ay() = slave_pool.get_body(i).get_ay();
-        master_pool.get_body(i).get_x() = slave_pool.get_body(i).get_x();
-        master_pool.get_body(i).get_y() = slave_pool.get_body(i).get_y();
-        master_pool.get_body(i).get_vy() = slave_pool.get_body(i).get_vy();
-        master_pool.get_body(i).get_vx() = slave_pool.get_body(i).get_vx();
-    }
-}
-void scatter_pool(BodyPool &pool, int bodies, std::vector<double> &collide_vy, std::vector<double> &collide_vx, std::vector<double> &collide_x, std::vector<double> &collide_y)
+void scatter_pool(BodyPool &pool, int bodies)
 {
 
     MPI_Bcast(pool.x.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
@@ -213,12 +191,8 @@ void scatter_pool(BodyPool &pool, int bodies, std::vector<double> &collide_vy, s
     MPI_Bcast(pool.m.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
     MPI_Bcast(pool.ay.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
     MPI_Bcast(pool.ax.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-    MPI_Bcast(collide_vx.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-    MPI_Bcast(collide_vy.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-    MPI_Bcast(collide_x.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-    MPI_Bcast(collide_y.data(), bodies, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 }
-void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies, std::vector<double> &collide_vy, std::vector<double> &collide_vx, std::vector<double> &collide_x, std::vector<double> &collide_y)
+void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies)
 {
     if (rank == 0)
     {
@@ -229,10 +203,10 @@ void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies, std::
             int cnts = end_body - start_body;
             MPI_Recv(pool.ay.data() + start_body, cnts, MPI_DOUBLE, source, 6, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             MPI_Recv(pool.ax.data() + start_body, cnts, MPI_DOUBLE, source, 7, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            MPI_Recv(collide_vx.data() + start_body, cnts, MPI_DOUBLE, source, 8, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            MPI_Recv(collide_vy.data() + start_body, cnts, MPI_DOUBLE, source, 9, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            MPI_Recv(collide_x.data() + start_body, cnts, MPI_DOUBLE, source, 10, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            MPI_Recv(collide_y.data() + start_body, cnts, MPI_DOUBLE, source, 11, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(pool.vx.data() + start_body, cnts, MPI_DOUBLE, source, 8, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(pool.vy.data() + start_body, cnts, MPI_DOUBLE, source, 9, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(pool.x.data() + start_body, cnts, MPI_DOUBLE, source, 10, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(pool.y.data() + start_body, cnts, MPI_DOUBLE, source, 11, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
     }
 
@@ -244,9 +218,9 @@ void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies, std::
         // MPI_Send( const void* buf , int count , MPI_Datatype datatype , int dest , int tag , MPI_Comm comm);
         MPI_Send(pool.ay.data() + start_body, cnts, MPI_DOUBLE, 0, 6, MPI_COMM_WORLD);
         MPI_Send(pool.ax.data() + start_body, cnts, MPI_DOUBLE, 0, 7, MPI_COMM_WORLD);
-        MPI_Send(collide_vx.data() + start_body, cnts, MPI_DOUBLE, 0, 8, MPI_COMM_WORLD);
-        MPI_Send(collide_vy.data() + start_body, cnts, MPI_DOUBLE, 0, 9, MPI_COMM_WORLD);
-        MPI_Send(collide_x.data() + start_body, cnts, MPI_DOUBLE, 0, 10, MPI_COMM_WORLD);
-        MPI_Send(collide_y.data() + start_body, cnts, MPI_DOUBLE, 0, 11, MPI_COMM_WORLD);
+        MPI_Send(pool.vx.data() + start_body, cnts, MPI_DOUBLE, 0, 8, MPI_COMM_WORLD);
+        MPI_Send(pool.vy.data() + start_body, cnts, MPI_DOUBLE, 0, 9, MPI_COMM_WORLD);
+        MPI_Send(pool.x.data() + start_body, cnts, MPI_DOUBLE, 0, 10, MPI_COMM_WORLD);
+        MPI_Send(pool.y.data() + start_body, cnts, MPI_DOUBLE, 0, 11, MPI_COMM_WORLD);
     }
 }
