@@ -2,7 +2,7 @@
 #include <nbody/body.hpp>
 #include <vector>
 #include <chrono>
-#include <omp.h>
+// #include <omp.h>
 #define Get_Thread_Number
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 #ifdef Get_Thread_Number
     if (argc < 4)
     {
-        printf("Error: Invalid input! \nUseage: openmp_gui <thread_number> <bodies> <iteration>\n");
+        printf("Error: Invalid input! \nUseage: openmp <thread_number> <bodies> <iteration>\n");
         return 0;
     }
     thread_number = atoi(argv[1]);
@@ -37,21 +37,21 @@ int main(int argc, char **argv)
     collide_vx.resize(bodies);
     collide_vx.resize(bodies);
 #endif // Get_Thread_Number
-    omp_set_num_threads(thread_number);
+    // omp_set_num_threads(thread_number);
     size_t duration = 0;
     int current_iter = iter;
     auto begin = std::chrono::high_resolution_clock::now();
     while (current_iter > 0)
     {
         check_and_update();
-        iter--;
+        current_iter--;
     }
     auto end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
-    printf("openmp_thread: %d \n", omp_get_num_threads());
+    // printf("openmp_thread: %d \n", omp_get_num_threads());
     printf("body: %d \n", bodies);
     printf("iterations: %d \n", iter);
-    printf("speed(ns/iter): %f \n", duration / iter);
+    printf("speed(ns/iter): %lu \n", duration / iter);
 }
 
 void check_and_update()

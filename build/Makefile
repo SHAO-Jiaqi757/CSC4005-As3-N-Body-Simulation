@@ -67,10 +67,10 @@ RM = /usr/local/Cellar/cmake/3.19.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256"
+CMAKE_SOURCE_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256_bench"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build"
+CMAKE_BINARY_DIR = "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256_bench/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256_bench/build/CMakeFiles" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256_bench/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256_bench/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -130,69 +130,69 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named openmp_mpi_gui
+# Target rules for targets named openmp_mpi
 
 # Build rule for target.
-openmp_mpi_gui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 openmp_mpi_gui
-.PHONY : openmp_mpi_gui
+openmp_mpi: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 openmp_mpi
+.PHONY : openmp_mpi
 
 # fast build rule for target.
-openmp_mpi_gui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/build
-.PHONY : openmp_mpi_gui/fast
+openmp_mpi/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi.dir/build.make CMakeFiles/openmp_mpi.dir/build
+.PHONY : openmp_mpi/fast
 
 #=============================================================================
-# Target rules for targets named mpi_gui
+# Target rules for targets named openmp
 
 # Build rule for target.
-mpi_gui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mpi_gui
-.PHONY : mpi_gui
+openmp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 openmp
+.PHONY : openmp
 
 # fast build rule for target.
-mpi_gui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/build
-.PHONY : mpi_gui/fast
+openmp/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp.dir/build.make CMakeFiles/openmp.dir/build
+.PHONY : openmp/fast
 
 #=============================================================================
-# Target rules for targets named pthread_gui
+# Target rules for targets named sequential
 
 # Build rule for target.
-pthread_gui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pthread_gui
-.PHONY : pthread_gui
+sequential: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sequential
+.PHONY : sequential
 
 # fast build rule for target.
-pthread_gui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/build
-.PHONY : pthread_gui/fast
+sequential/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential.dir/build.make CMakeFiles/sequential.dir/build
+.PHONY : sequential/fast
 
 #=============================================================================
-# Target rules for targets named openmp_gui
+# Target rules for targets named pthread
 
 # Build rule for target.
-openmp_gui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 openmp_gui
-.PHONY : openmp_gui
+pthread: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pthread
+.PHONY : pthread
 
 # fast build rule for target.
-openmp_gui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/build
-.PHONY : openmp_gui/fast
+pthread/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread.dir/build.make CMakeFiles/pthread.dir/build
+.PHONY : pthread/fast
 
 #=============================================================================
-# Target rules for targets named sequential_gui
+# Target rules for targets named mpi
 
 # Build rule for target.
-sequential_gui: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sequential_gui
-.PHONY : sequential_gui
+mpi: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mpi
+.PHONY : mpi
 
 # fast build rule for target.
-sequential_gui/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/build
-.PHONY : sequential_gui/fast
+mpi/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi.dir/build.make CMakeFiles/mpi.dir/build
+.PHONY : mpi/fast
 
 #=============================================================================
 # Target rules for targets named core
@@ -207,368 +207,113 @@ core/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/build
 .PHONY : core/fast
 
-imgui/backends/imgui_impl_opengl2.o: imgui/backends/imgui_impl_opengl2.cpp.o
+src/mpi.o: src/mpi.cpp.o
 
-.PHONY : imgui/backends/imgui_impl_opengl2.o
-
-# target to build an object file
-imgui/backends/imgui_impl_opengl2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o
-.PHONY : imgui/backends/imgui_impl_opengl2.cpp.o
-
-imgui/backends/imgui_impl_opengl2.i: imgui/backends/imgui_impl_opengl2.cpp.i
-
-.PHONY : imgui/backends/imgui_impl_opengl2.i
-
-# target to preprocess a source file
-imgui/backends/imgui_impl_opengl2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.i
-.PHONY : imgui/backends/imgui_impl_opengl2.cpp.i
-
-imgui/backends/imgui_impl_opengl2.s: imgui/backends/imgui_impl_opengl2.cpp.s
-
-.PHONY : imgui/backends/imgui_impl_opengl2.s
-
-# target to generate assembly for a file
-imgui/backends/imgui_impl_opengl2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.s
-.PHONY : imgui/backends/imgui_impl_opengl2.cpp.s
-
-imgui/backends/imgui_impl_sdl.o: imgui/backends/imgui_impl_sdl.cpp.o
-
-.PHONY : imgui/backends/imgui_impl_sdl.o
+.PHONY : src/mpi.o
 
 # target to build an object file
-imgui/backends/imgui_impl_sdl.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o
-.PHONY : imgui/backends/imgui_impl_sdl.cpp.o
+src/mpi.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi.dir/build.make CMakeFiles/mpi.dir/src/mpi.cpp.o
+.PHONY : src/mpi.cpp.o
 
-imgui/backends/imgui_impl_sdl.i: imgui/backends/imgui_impl_sdl.cpp.i
+src/mpi.i: src/mpi.cpp.i
 
-.PHONY : imgui/backends/imgui_impl_sdl.i
+.PHONY : src/mpi.i
 
 # target to preprocess a source file
-imgui/backends/imgui_impl_sdl.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.i
-.PHONY : imgui/backends/imgui_impl_sdl.cpp.i
+src/mpi.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi.dir/build.make CMakeFiles/mpi.dir/src/mpi.cpp.i
+.PHONY : src/mpi.cpp.i
 
-imgui/backends/imgui_impl_sdl.s: imgui/backends/imgui_impl_sdl.cpp.s
+src/mpi.s: src/mpi.cpp.s
 
-.PHONY : imgui/backends/imgui_impl_sdl.s
+.PHONY : src/mpi.s
 
 # target to generate assembly for a file
-imgui/backends/imgui_impl_sdl.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.s
-.PHONY : imgui/backends/imgui_impl_sdl.cpp.s
+src/mpi.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi.dir/build.make CMakeFiles/mpi.dir/src/mpi.cpp.s
+.PHONY : src/mpi.cpp.s
 
-imgui/imgui.o: imgui/imgui.cpp.o
+src/openmp.o: src/openmp.cpp.o
 
-.PHONY : imgui/imgui.o
+.PHONY : src/openmp.o
 
 # target to build an object file
-imgui/imgui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui.cpp.o
-.PHONY : imgui/imgui.cpp.o
+src/openmp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp.dir/build.make CMakeFiles/openmp.dir/src/openmp.cpp.o
+.PHONY : src/openmp.cpp.o
 
-imgui/imgui.i: imgui/imgui.cpp.i
+src/openmp.i: src/openmp.cpp.i
 
-.PHONY : imgui/imgui.i
+.PHONY : src/openmp.i
 
 # target to preprocess a source file
-imgui/imgui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui.cpp.i
-.PHONY : imgui/imgui.cpp.i
+src/openmp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp.dir/build.make CMakeFiles/openmp.dir/src/openmp.cpp.i
+.PHONY : src/openmp.cpp.i
 
-imgui/imgui.s: imgui/imgui.cpp.s
+src/openmp.s: src/openmp.cpp.s
 
-.PHONY : imgui/imgui.s
+.PHONY : src/openmp.s
 
 # target to generate assembly for a file
-imgui/imgui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui.cpp.s
-.PHONY : imgui/imgui.cpp.s
+src/openmp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp.dir/build.make CMakeFiles/openmp.dir/src/openmp.cpp.s
+.PHONY : src/openmp.cpp.s
 
-imgui/imgui_demo.o: imgui/imgui_demo.cpp.o
+src/openmp_mpi.o: src/openmp_mpi.cpp.o
 
-.PHONY : imgui/imgui_demo.o
+.PHONY : src/openmp_mpi.o
 
 # target to build an object file
-imgui/imgui_demo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_demo.cpp.o
-.PHONY : imgui/imgui_demo.cpp.o
+src/openmp_mpi.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi.dir/build.make CMakeFiles/openmp_mpi.dir/src/openmp_mpi.cpp.o
+.PHONY : src/openmp_mpi.cpp.o
 
-imgui/imgui_demo.i: imgui/imgui_demo.cpp.i
+src/openmp_mpi.i: src/openmp_mpi.cpp.i
 
-.PHONY : imgui/imgui_demo.i
+.PHONY : src/openmp_mpi.i
 
 # target to preprocess a source file
-imgui/imgui_demo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_demo.cpp.i
-.PHONY : imgui/imgui_demo.cpp.i
+src/openmp_mpi.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi.dir/build.make CMakeFiles/openmp_mpi.dir/src/openmp_mpi.cpp.i
+.PHONY : src/openmp_mpi.cpp.i
 
-imgui/imgui_demo.s: imgui/imgui_demo.cpp.s
+src/openmp_mpi.s: src/openmp_mpi.cpp.s
 
-.PHONY : imgui/imgui_demo.s
+.PHONY : src/openmp_mpi.s
 
 # target to generate assembly for a file
-imgui/imgui_demo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_demo.cpp.s
-.PHONY : imgui/imgui_demo.cpp.s
+src/openmp_mpi.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi.dir/build.make CMakeFiles/openmp_mpi.dir/src/openmp_mpi.cpp.s
+.PHONY : src/openmp_mpi.cpp.s
 
-imgui/imgui_draw.o: imgui/imgui_draw.cpp.o
+src/pthread.o: src/pthread.cpp.o
 
-.PHONY : imgui/imgui_draw.o
+.PHONY : src/pthread.o
 
 # target to build an object file
-imgui/imgui_draw.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_draw.cpp.o
-.PHONY : imgui/imgui_draw.cpp.o
+src/pthread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread.dir/build.make CMakeFiles/pthread.dir/src/pthread.cpp.o
+.PHONY : src/pthread.cpp.o
 
-imgui/imgui_draw.i: imgui/imgui_draw.cpp.i
+src/pthread.i: src/pthread.cpp.i
 
-.PHONY : imgui/imgui_draw.i
-
-# target to preprocess a source file
-imgui/imgui_draw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_draw.cpp.i
-.PHONY : imgui/imgui_draw.cpp.i
-
-imgui/imgui_draw.s: imgui/imgui_draw.cpp.s
-
-.PHONY : imgui/imgui_draw.s
-
-# target to generate assembly for a file
-imgui/imgui_draw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_draw.cpp.s
-.PHONY : imgui/imgui_draw.cpp.s
-
-imgui/imgui_tables.o: imgui/imgui_tables.cpp.o
-
-.PHONY : imgui/imgui_tables.o
-
-# target to build an object file
-imgui/imgui_tables.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_tables.cpp.o
-.PHONY : imgui/imgui_tables.cpp.o
-
-imgui/imgui_tables.i: imgui/imgui_tables.cpp.i
-
-.PHONY : imgui/imgui_tables.i
+.PHONY : src/pthread.i
 
 # target to preprocess a source file
-imgui/imgui_tables.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_tables.cpp.i
-.PHONY : imgui/imgui_tables.cpp.i
+src/pthread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread.dir/build.make CMakeFiles/pthread.dir/src/pthread.cpp.i
+.PHONY : src/pthread.cpp.i
 
-imgui/imgui_tables.s: imgui/imgui_tables.cpp.s
+src/pthread.s: src/pthread.cpp.s
 
-.PHONY : imgui/imgui_tables.s
-
-# target to generate assembly for a file
-imgui/imgui_tables.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_tables.cpp.s
-.PHONY : imgui/imgui_tables.cpp.s
-
-imgui/imgui_widgets.o: imgui/imgui_widgets.cpp.o
-
-.PHONY : imgui/imgui_widgets.o
-
-# target to build an object file
-imgui/imgui_widgets.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o
-.PHONY : imgui/imgui_widgets.cpp.o
-
-imgui/imgui_widgets.i: imgui/imgui_widgets.cpp.i
-
-.PHONY : imgui/imgui_widgets.i
-
-# target to preprocess a source file
-imgui/imgui_widgets.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_widgets.cpp.i
-.PHONY : imgui/imgui_widgets.cpp.i
-
-imgui/imgui_widgets.s: imgui/imgui_widgets.cpp.s
-
-.PHONY : imgui/imgui_widgets.s
+.PHONY : src/pthread.s
 
 # target to generate assembly for a file
-imgui/imgui_widgets.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/imgui_widgets.cpp.s
-.PHONY : imgui/imgui_widgets.cpp.s
-
-imgui/misc/cpp/imgui_stdlib.o: imgui/misc/cpp/imgui_stdlib.cpp.o
-
-.PHONY : imgui/misc/cpp/imgui_stdlib.o
-
-# target to build an object file
-imgui/misc/cpp/imgui_stdlib.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o
-.PHONY : imgui/misc/cpp/imgui_stdlib.cpp.o
-
-imgui/misc/cpp/imgui_stdlib.i: imgui/misc/cpp/imgui_stdlib.cpp.i
-
-.PHONY : imgui/misc/cpp/imgui_stdlib.i
-
-# target to preprocess a source file
-imgui/misc/cpp/imgui_stdlib.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.i
-.PHONY : imgui/misc/cpp/imgui_stdlib.cpp.i
-
-imgui/misc/cpp/imgui_stdlib.s: imgui/misc/cpp/imgui_stdlib.cpp.s
-
-.PHONY : imgui/misc/cpp/imgui_stdlib.s
-
-# target to generate assembly for a file
-imgui/misc/cpp/imgui_stdlib.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.s
-.PHONY : imgui/misc/cpp/imgui_stdlib.cpp.s
-
-imgui/misc/freetype/imgui_freetype.o: imgui/misc/freetype/imgui_freetype.cpp.o
-
-.PHONY : imgui/misc/freetype/imgui_freetype.o
-
-# target to build an object file
-imgui/misc/freetype/imgui_freetype.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o
-.PHONY : imgui/misc/freetype/imgui_freetype.cpp.o
-
-imgui/misc/freetype/imgui_freetype.i: imgui/misc/freetype/imgui_freetype.cpp.i
-
-.PHONY : imgui/misc/freetype/imgui_freetype.i
-
-# target to preprocess a source file
-imgui/misc/freetype/imgui_freetype.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.i
-.PHONY : imgui/misc/freetype/imgui_freetype.cpp.i
-
-imgui/misc/freetype/imgui_freetype.s: imgui/misc/freetype/imgui_freetype.cpp.s
-
-.PHONY : imgui/misc/freetype/imgui_freetype.s
-
-# target to generate assembly for a file
-imgui/misc/freetype/imgui_freetype.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s
-.PHONY : imgui/misc/freetype/imgui_freetype.cpp.s
-
-src/graphic.o: src/graphic.cpp.o
-
-.PHONY : src/graphic.o
-
-# target to build an object file
-src/graphic.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/src/graphic.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/graphic.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.o
-.PHONY : src/graphic.cpp.o
-
-src/graphic.i: src/graphic.cpp.i
-
-.PHONY : src/graphic.i
-
-# target to preprocess a source file
-src/graphic.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/src/graphic.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/graphic.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.i
-.PHONY : src/graphic.cpp.i
-
-src/graphic.s: src/graphic.cpp.s
-
-.PHONY : src/graphic.s
-
-# target to generate assembly for a file
-src/graphic.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/src/graphic.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/graphic.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/graphic.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/graphic.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/graphic.cpp.s
-.PHONY : src/graphic.cpp.s
-
-src/mpi_gui.o: src/mpi_gui.cpp.o
-
-.PHONY : src/mpi_gui.o
-
-# target to build an object file
-src/mpi_gui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/mpi_gui.cpp.o
-.PHONY : src/mpi_gui.cpp.o
-
-src/mpi_gui.i: src/mpi_gui.cpp.i
-
-.PHONY : src/mpi_gui.i
-
-# target to preprocess a source file
-src/mpi_gui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/mpi_gui.cpp.i
-.PHONY : src/mpi_gui.cpp.i
-
-src/mpi_gui.s: src/mpi_gui.cpp.s
-
-.PHONY : src/mpi_gui.s
-
-# target to generate assembly for a file
-src/mpi_gui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpi_gui.dir/build.make CMakeFiles/mpi_gui.dir/src/mpi_gui.cpp.s
-.PHONY : src/mpi_gui.cpp.s
-
-src/openmp_gui.o: src/openmp_gui.cpp.o
-
-.PHONY : src/openmp_gui.o
-
-# target to build an object file
-src/openmp_gui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/openmp_gui.cpp.o
-.PHONY : src/openmp_gui.cpp.o
-
-src/openmp_gui.i: src/openmp_gui.cpp.i
-
-.PHONY : src/openmp_gui.i
-
-# target to preprocess a source file
-src/openmp_gui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/openmp_gui.cpp.i
-.PHONY : src/openmp_gui.cpp.i
-
-src/openmp_gui.s: src/openmp_gui.cpp.s
-
-.PHONY : src/openmp_gui.s
-
-# target to generate assembly for a file
-src/openmp_gui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_gui.dir/build.make CMakeFiles/openmp_gui.dir/src/openmp_gui.cpp.s
-.PHONY : src/openmp_gui.cpp.s
-
-src/openmp_mpi_gui.o: src/openmp_mpi_gui.cpp.o
-
-.PHONY : src/openmp_mpi_gui.o
-
-# target to build an object file
-src/openmp_mpi_gui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/src/openmp_mpi_gui.cpp.o
-.PHONY : src/openmp_mpi_gui.cpp.o
-
-src/openmp_mpi_gui.i: src/openmp_mpi_gui.cpp.i
-
-.PHONY : src/openmp_mpi_gui.i
-
-# target to preprocess a source file
-src/openmp_mpi_gui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/src/openmp_mpi_gui.cpp.i
-.PHONY : src/openmp_mpi_gui.cpp.i
-
-src/openmp_mpi_gui.s: src/openmp_mpi_gui.cpp.s
-
-.PHONY : src/openmp_mpi_gui.s
-
-# target to generate assembly for a file
-src/openmp_mpi_gui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/openmp_mpi_gui.dir/build.make CMakeFiles/openmp_mpi_gui.dir/src/openmp_mpi_gui.cpp.s
-.PHONY : src/openmp_mpi_gui.cpp.s
+src/pthread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread.dir/build.make CMakeFiles/pthread.dir/src/pthread.cpp.s
+.PHONY : src/pthread.cpp.s
 
 src/pthread_barrier.o: src/pthread_barrier.c.o
 
@@ -576,7 +321,7 @@ src/pthread_barrier.o: src/pthread_barrier.c.o
 
 # target to build an object file
 src/pthread_barrier.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_barrier.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread.dir/build.make CMakeFiles/pthread.dir/src/pthread_barrier.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/pthread_barrier.c.o
 .PHONY : src/pthread_barrier.c.o
 
@@ -586,7 +331,7 @@ src/pthread_barrier.i: src/pthread_barrier.c.i
 
 # target to preprocess a source file
 src/pthread_barrier.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_barrier.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread.dir/build.make CMakeFiles/pthread.dir/src/pthread_barrier.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/pthread_barrier.c.i
 .PHONY : src/pthread_barrier.c.i
 
@@ -596,63 +341,36 @@ src/pthread_barrier.s: src/pthread_barrier.c.s
 
 # target to generate assembly for a file
 src/pthread_barrier.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_barrier.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread.dir/build.make CMakeFiles/pthread.dir/src/pthread_barrier.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/pthread_barrier.c.s
 .PHONY : src/pthread_barrier.c.s
 
-src/pthread_gui.o: src/pthread_gui.cpp.o
+src/sequential.o: src/sequential.cpp.o
 
-.PHONY : src/pthread_gui.o
-
-# target to build an object file
-src/pthread_gui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_gui.cpp.o
-.PHONY : src/pthread_gui.cpp.o
-
-src/pthread_gui.i: src/pthread_gui.cpp.i
-
-.PHONY : src/pthread_gui.i
-
-# target to preprocess a source file
-src/pthread_gui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_gui.cpp.i
-.PHONY : src/pthread_gui.cpp.i
-
-src/pthread_gui.s: src/pthread_gui.cpp.s
-
-.PHONY : src/pthread_gui.s
-
-# target to generate assembly for a file
-src/pthread_gui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_gui.cpp.s
-.PHONY : src/pthread_gui.cpp.s
-
-src/sequential_gui.o: src/sequential_gui.cpp.o
-
-.PHONY : src/sequential_gui.o
+.PHONY : src/sequential.o
 
 # target to build an object file
-src/sequential_gui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/sequential_gui.cpp.o
-.PHONY : src/sequential_gui.cpp.o
+src/sequential.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential.dir/build.make CMakeFiles/sequential.dir/src/sequential.cpp.o
+.PHONY : src/sequential.cpp.o
 
-src/sequential_gui.i: src/sequential_gui.cpp.i
+src/sequential.i: src/sequential.cpp.i
 
-.PHONY : src/sequential_gui.i
+.PHONY : src/sequential.i
 
 # target to preprocess a source file
-src/sequential_gui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/sequential_gui.cpp.i
-.PHONY : src/sequential_gui.cpp.i
+src/sequential.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential.dir/build.make CMakeFiles/sequential.dir/src/sequential.cpp.i
+.PHONY : src/sequential.cpp.i
 
-src/sequential_gui.s: src/sequential_gui.cpp.s
+src/sequential.s: src/sequential.cpp.s
 
-.PHONY : src/sequential_gui.s
+.PHONY : src/sequential.s
 
 # target to generate assembly for a file
-src/sequential_gui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/src/sequential_gui.cpp.s
-.PHONY : src/sequential_gui.cpp.s
+src/sequential.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential.dir/build.make CMakeFiles/sequential.dir/src/sequential.cpp.s
+.PHONY : src/sequential.cpp.s
 
 # Help Target
 help:
@@ -663,59 +381,29 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... core"
-	@echo "... mpi_gui"
-	@echo "... openmp_gui"
-	@echo "... openmp_mpi_gui"
-	@echo "... pthread_gui"
-	@echo "... sequential_gui"
-	@echo "... imgui/backends/imgui_impl_opengl2.o"
-	@echo "... imgui/backends/imgui_impl_opengl2.i"
-	@echo "... imgui/backends/imgui_impl_opengl2.s"
-	@echo "... imgui/backends/imgui_impl_sdl.o"
-	@echo "... imgui/backends/imgui_impl_sdl.i"
-	@echo "... imgui/backends/imgui_impl_sdl.s"
-	@echo "... imgui/imgui.o"
-	@echo "... imgui/imgui.i"
-	@echo "... imgui/imgui.s"
-	@echo "... imgui/imgui_demo.o"
-	@echo "... imgui/imgui_demo.i"
-	@echo "... imgui/imgui_demo.s"
-	@echo "... imgui/imgui_draw.o"
-	@echo "... imgui/imgui_draw.i"
-	@echo "... imgui/imgui_draw.s"
-	@echo "... imgui/imgui_tables.o"
-	@echo "... imgui/imgui_tables.i"
-	@echo "... imgui/imgui_tables.s"
-	@echo "... imgui/imgui_widgets.o"
-	@echo "... imgui/imgui_widgets.i"
-	@echo "... imgui/imgui_widgets.s"
-	@echo "... imgui/misc/cpp/imgui_stdlib.o"
-	@echo "... imgui/misc/cpp/imgui_stdlib.i"
-	@echo "... imgui/misc/cpp/imgui_stdlib.s"
-	@echo "... imgui/misc/freetype/imgui_freetype.o"
-	@echo "... imgui/misc/freetype/imgui_freetype.i"
-	@echo "... imgui/misc/freetype/imgui_freetype.s"
-	@echo "... src/graphic.o"
-	@echo "... src/graphic.i"
-	@echo "... src/graphic.s"
-	@echo "... src/mpi_gui.o"
-	@echo "... src/mpi_gui.i"
-	@echo "... src/mpi_gui.s"
-	@echo "... src/openmp_gui.o"
-	@echo "... src/openmp_gui.i"
-	@echo "... src/openmp_gui.s"
-	@echo "... src/openmp_mpi_gui.o"
-	@echo "... src/openmp_mpi_gui.i"
-	@echo "... src/openmp_mpi_gui.s"
+	@echo "... mpi"
+	@echo "... openmp"
+	@echo "... openmp_mpi"
+	@echo "... pthread"
+	@echo "... sequential"
+	@echo "... src/mpi.o"
+	@echo "... src/mpi.i"
+	@echo "... src/mpi.s"
+	@echo "... src/openmp.o"
+	@echo "... src/openmp.i"
+	@echo "... src/openmp.s"
+	@echo "... src/openmp_mpi.o"
+	@echo "... src/openmp_mpi.i"
+	@echo "... src/openmp_mpi.s"
+	@echo "... src/pthread.o"
+	@echo "... src/pthread.i"
+	@echo "... src/pthread.s"
 	@echo "... src/pthread_barrier.o"
 	@echo "... src/pthread_barrier.i"
 	@echo "... src/pthread_barrier.s"
-	@echo "... src/pthread_gui.o"
-	@echo "... src/pthread_gui.i"
-	@echo "... src/pthread_gui.s"
-	@echo "... src/sequential_gui.o"
-	@echo "... src/sequential_gui.i"
-	@echo "... src/sequential_gui.s"
+	@echo "... src/sequential.o"
+	@echo "... src/sequential.i"
+	@echo "... src/sequential.s"
 .PHONY : help
 
 

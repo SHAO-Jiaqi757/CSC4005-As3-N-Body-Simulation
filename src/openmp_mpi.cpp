@@ -7,8 +7,8 @@
 
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
-void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius, int &iter);
-int slaves();
+void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius, int &iter, int comm_size);
+int slaves(int comm_size);
 void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies);
 void scatter_pool(BodyPool &pool, int bodies);
 void get_slice(int &start_body, int &end_body, int nbody, int rank, int total_rank); // get subtask, rank r get job from start_body to end_body;
@@ -22,15 +22,16 @@ struct Info
     float gravity;
     float elapse;
     float radius;
-    float iter
+    float iter;
 } __attribute__((packed));
 
 int main(int argc, char **argv)
 {
     MPI_Init(&argc, &argv);
     // UNUSED(argc, argv);
-    int rank;
+    int rank, comm_size;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
 
     float gravity = 100;
     float space = 500;
@@ -42,7 +43,7 @@ int main(int argc, char **argv)
     {
         if (argc < 3)
         {
-            printf("Error: Invalid input!\nUseage: mpi <bodies> <iteration> \n");
+            printf("Error: Invalid input!\nUseage: openmp_mpi <bodies> <iteration> \n");
             return 0;
         }
         int bodies = atoi(argv[1]); // change by input
@@ -52,27 +53,27 @@ int main(int argc, char **argv)
         while (current_iter > 0)
         {
             BodyPool pool(static_cast<size_t>(bodies), space, max_mass);
-            master(pool, max_mass, bodies, elapse, gravity, space, radius, current_iter);
+            master(pool, max_mass, bodies, elapse, gravity, space, radius, current_iter, comm_size);
         }
         auto end = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
 
-        printf("cores: %d \n", comm_size);
+        printf("cores(omp+mpi): %d \n", comm_size);
         printf("body: %d \n", bodies);
         printf("iterations: %d \n", iter);
-        printf("speed(ns/iter): %f \n", duration / iter);
-
-        else
-        {
-            while (1)
-            {
-                if (!slaves())
-                    break;
-            }
-        }
-        MPI_Finalize();
+        printf("speed(ns/iter): %lu \n", duration / iter);
     }
+    else
+    {
+        while (1)
+        {
+            if (!slaves(comm_size))
+                break;
+        }
+    }
+    MPI_Finalize();
 }
+
 void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity)
 {
     int start_body, end_body;
@@ -100,11 +101,8 @@ void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space,
     return;
 }
 
-void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius, int &iter)
+void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius, int &iter, int comm_size)
 {
-    int comm_size;
-    MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
-
     MPI_Datatype MPI_BodyPool;
     MPI_Datatype MPI_Info;
 
@@ -126,11 +124,10 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
     iter--;
 #endif // DEBUG
 }
-int slaves()
+int slaves(int comm_size)
 {
-    int rank, comm_size;
+    int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
     MPI_Datatype MPI_Info;
     MPI_Type_contiguous(7, MPI_FLOAT, &MPI_Info);
     MPI_Type_commit(&MPI_Info);

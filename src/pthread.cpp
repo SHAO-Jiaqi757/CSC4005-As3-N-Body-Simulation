@@ -27,9 +27,9 @@ int main(int argc, char **argv)
 {
     // UNUSED(argc, argv);
 
-    if (argc < 2)
+    if (argc < 4)
     {
-        printf("Error: Invalid Inputs \nUseage: pthread_gui <thread_number> <bodies> <iteration> \n");
+        printf("Error: Invalid Inputs \nUseage: pthread <thread_number> <bodies> <iteration> \n");
         return 0;
     }
     thread_number = atoi(argv[1]);

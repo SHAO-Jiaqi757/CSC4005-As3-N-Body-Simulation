@@ -6,15 +6,6 @@
 #include <random>
 #include <utility>
 #include <vector>
-template <typename Container>
-void printVector(const Container &cont)
-{
-    for (auto const &x : cont)
-    {
-        std::cout << x << " ";
-    }
-    std::cout << '\n';
-}
 class BodyPool
 {
     // provides in this way so that

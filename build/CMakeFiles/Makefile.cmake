@@ -66,10 +66,10 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/openmp_mpi_gui.dir/DependInfo.cmake"
-  "CMakeFiles/mpi_gui.dir/DependInfo.cmake"
-  "CMakeFiles/pthread_gui.dir/DependInfo.cmake"
-  "CMakeFiles/openmp_gui.dir/DependInfo.cmake"
-  "CMakeFiles/sequential_gui.dir/DependInfo.cmake"
+  "CMakeFiles/openmp_mpi.dir/DependInfo.cmake"
+  "CMakeFiles/openmp.dir/DependInfo.cmake"
+  "CMakeFiles/sequential.dir/DependInfo.cmake"
+  "CMakeFiles/pthread.dir/DependInfo.cmake"
+  "CMakeFiles/mpi.dir/DependInfo.cmake"
   "CMakeFiles/core.dir/DependInfo.cmake"
   )
