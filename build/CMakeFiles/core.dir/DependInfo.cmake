@@ -1,8 +1,30 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "C"
   "CXX"
   )
 # The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/src/pthread_barrier.c" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles/core.dir/src/pthread_barrier.c.o"
+  )
+set(CMAKE_C_COMPILER_ID "AppleClang")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_C
+  "ImDrawIdx=unsigned"
+  )
+
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../include"
+  "../imgui"
+  "../imgui/backends"
+  "/usr/local/Cellar/open-mpi/4.1.1_2/include"
+  "/usr/local/Cellar/sdl2/2.0.16/include/SDL2"
+  "/Library/Frameworks/Mono.framework/Headers"
+  "/usr/local/include/freetype2"
+  "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenGL.framework"
+  )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_opengl2.cpp" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o"
   "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/backends/imgui_impl_sdl.cpp" "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles/core.dir/imgui/backends/imgui_impl_sdl.cpp.o"

@@ -193,6 +193,19 @@ CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/imgui/misc/freetype/imgui_freetype.cpp" -o CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.s
 
+CMakeFiles/core.dir/src/pthread_barrier.c.o: CMakeFiles/core.dir/flags.make
+CMakeFiles/core.dir/src/pthread_barrier.c.o: ../src/pthread_barrier.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/core.dir/src/pthread_barrier.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/core.dir/src/pthread_barrier.c.o -c "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/src/pthread_barrier.c"
+
+CMakeFiles/core.dir/src/pthread_barrier.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/core.dir/src/pthread_barrier.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/src/pthread_barrier.c" > CMakeFiles/core.dir/src/pthread_barrier.c.i
+
+CMakeFiles/core.dir/src/pthread_barrier.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/core.dir/src/pthread_barrier.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/src/pthread_barrier.c" -o CMakeFiles/core.dir/src/pthread_barrier.c.s
+
 # Object files for target core
 core_OBJECTS = \
 "CMakeFiles/core.dir/imgui/backends/imgui_impl_opengl2.cpp.o" \
@@ -203,7 +216,8 @@ core_OBJECTS = \
 "CMakeFiles/core.dir/imgui/imgui_tables.cpp.o" \
 "CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o" \
 "CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o" \
-"CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o"
+"CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o" \
+"CMakeFiles/core.dir/src/pthread_barrier.c.o"
 
 # External object files for target core
 core_EXTERNAL_OBJECTS =
@@ -217,9 +231,10 @@ libcore.a: CMakeFiles/core.dir/imgui/imgui_tables.cpp.o
 libcore.a: CMakeFiles/core.dir/imgui/imgui_widgets.cpp.o
 libcore.a: CMakeFiles/core.dir/imgui/misc/cpp/imgui_stdlib.cpp.o
 libcore.a: CMakeFiles/core.dir/imgui/misc/freetype/imgui_freetype.cpp.o
+libcore.a: CMakeFiles/core.dir/src/pthread_barrier.c.o
 libcore.a: CMakeFiles/core.dir/build.make
 libcore.a: CMakeFiles/core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libcore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX static library libcore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core.dir/link.txt --verbose=$(VERBOSE)
 

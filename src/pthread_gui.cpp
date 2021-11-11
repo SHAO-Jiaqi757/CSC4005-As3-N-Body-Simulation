@@ -3,13 +3,14 @@
 #include <cstring>
 #include <nbody/body.hpp>
 #include <pthread.h>
+#include "pthread_barrier.h"
 #include <vector>
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
 void *check_and_update_thread(void *args);
 void *update_for_tick_thread(void *args);
 int thread_number = 0;
-
+pthread_barrier_t barrier;
 static float gravity = 100;
 static float space = 800;
 static float radius = 5;
@@ -72,22 +73,12 @@ int main(int argc, char **argv)
             // pool.update_for_tick(elapse, gravity, space, radius);
             std::vector<pthread_t> threads(thread_number);
             std::vector<int> thread_ids(thread_number);
+            pthread_barrier_init(&barrier, NULL, thread_number);
             pool.clear_acceleration();
-            // step 1;
             for (int i = 0; i < thread_number; i++)
             {
                 thread_ids[i] = i;
                 pthread_create(&threads[i], nullptr, check_and_update_thread, (void *)&thread_ids[i]);
-            }
-            for (int i = 0; i < thread_number; i++)
-            {
-                pthread_join(threads[i], NULL);
-            }
-            // step 2;
-            for (int i = 0; i < thread_number; i++)
-            {
-                thread_ids[i] = i;
-                pthread_create(&threads[i], nullptr, update_for_tick_thread, (void *)&thread_ids[i]);
             }
             for (int i = 0; i < thread_number; i++)
             {
@@ -113,7 +104,7 @@ void *check_and_update_thread(void *args)
     if (start_body >= end_body)
         return NULL;
     // printf("I am thread %d, start body: %d, end body: %d \n (pool.size: %d)", thread_id, start_body, end_body, n);
-    for (int i = start_body; i < end_body; i++)
+    for (size_t i = (size_t)start_body; i < (size_t)end_body; i++)
     {
         collide_posX[i] = 0;
         collide_posY[i] = 0;
@@ -125,23 +116,14 @@ void *check_and_update_thread(void *args)
                 pool.check_and_update_thread(pool.get_body(i), pool.get_body(j), radius, gravity, collide_posX, collide_posY, collide_vx, collide_vy);
         }
     }
-
-    return nullptr;
-}
-void *update_for_tick_thread(void *args)
-{
-    int thread_id = *((int *)args);
-    int start_body, end_body;
-    get_slice(start_body, end_body, thread_id, thread_number);
-    if (start_body >= end_body)
-        return NULL;
-    // printf("thread %d, update position... \n", thread_id);
+    pthread_barrier_wait(&barrier);
     for (int i = start_body; i < end_body; i++)
     {
         pool.get_body(i).update_for_tick_thread(elapse, space, radius, collide_posX[i], collide_posY[i], collide_vx[i], collide_vy[i]);
     }
     return nullptr;
 }
+
 void get_slice(int &start_body, int &end_body, int thread_id, int thread_number)
 {
     int m = pool.size() / thread_number;
