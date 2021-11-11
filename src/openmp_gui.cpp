@@ -7,8 +7,7 @@
 // #define Get_Thread_Number
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
-void check_and_update_thread();
-void update_for_tick_thread();
+void check_and_update();
 
 static float gravity = 100;
 static float space = 800;
@@ -68,12 +67,7 @@ int main(int argc, char **argv)
         }
         {
             const ImVec2 p = ImGui::GetCursorScreenPos();
-            // step 1;
-            check_and_update_thread();
-#pragma omp barrier
-            // step 2;
-            update_for_tick_thread();
-
+            check_and_update();
             // drawing...
             for (size_t i = 0; i < pool.size(); ++i)
             {
@@ -86,7 +80,7 @@ int main(int argc, char **argv)
         ImGui::End(); });
 }
 
-void check_and_update_thread()
+void check_and_update()
 {
     pool.clear_acceleration();
 #pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_posX, collide_posY)
@@ -102,9 +96,7 @@ void check_and_update_thread()
                 pool.check_and_update_thread(pool.get_body(i), pool.get_body(j), radius, gravity, collide_posX, collide_posY, collide_vx, collide_vy);
         }
     }
-}
-void update_for_tick_thread()
-{
+#pragma omp barrier
 #pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_posX, collide_posY)
     for (int i = 0; i < bodies; i++)
     {
