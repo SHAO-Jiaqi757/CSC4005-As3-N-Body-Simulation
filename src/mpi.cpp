@@ -62,7 +62,7 @@ int main(int argc, char **argv)
         printf("cores: %d \n", comm_size);
         printf("body: %d \n", bodies);
         printf("iterations: %d \n", iter);
-        printf("speed(ns/iter): %lu \n", duration / iter);
+        printf("duration(ns/iter): %lu \n", duration / iter);
     }
     else
     {

@@ -61,7 +61,7 @@ int main(int argc, char **argv)
         printf("cores(omp+mpi): %d \n", comm_size);
         printf("body: %d \n", bodies);
         printf("iterations: %d \n", iter);
-        printf("speed(ns/iter): %lu \n", duration / iter);
+        printf("duration(ns/iter): %lu \n", duration / iter);
     }
     else
     {
@@ -111,10 +111,11 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
     Info globalInfo = {space, (float)bodies, max_mass, gravity, elapse, radius, (float)iter};
 
     MPI_Bcast(&globalInfo, 1, MPI_Info, 0, MPI_COMM_WORLD);
-
+    if (iter <= 0)
+        return;
     pool.clear_acceleration();
     scatter_pool(pool, bodies);
-    // step 1;
+// step 1;
 #ifdef DEBUG
     check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity);
 

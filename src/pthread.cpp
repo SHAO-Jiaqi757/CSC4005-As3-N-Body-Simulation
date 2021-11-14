@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     collide_posY.resize(bodies);
     collide_vx.resize(bodies);
     collide_vy.resize(bodies);
-
+    pool = BodyPool{static_cast<size_t>(bodies), space, max_mass};
     int current_iter = iter;
     size_t duration = 0;
     auto begin = std::chrono::high_resolution_clock::now();
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     printf("pthread_number: %d \n", thread_number);
     printf("body: %d \n", bodies);
     printf("iterations: %d \n", iter);
-    printf("speed(ns/iter): %lu \n", duration / iter);
+    printf("duration(ns/iter): %lu \n", duration / iter);
 }
 
 void *check_and_update_thread(void *args)
@@ -75,8 +75,8 @@ void *check_and_update_thread(void *args)
     int thread_id = *((int *)args);
     int start_body, end_body;
     get_slice(start_body, end_body, thread_id, thread_number);
-    if (start_body >= end_body)
-        return NULL;
+    // if (start_body >= end_body)
+    //     return NULL;
     // printf("I am thread %d, start body: %d, end body: %d \n (pool.size: %d)", thread_id, start_body, end_body, n);
     for (size_t i = (size_t)start_body; i < (size_t)end_body; i++)
     {

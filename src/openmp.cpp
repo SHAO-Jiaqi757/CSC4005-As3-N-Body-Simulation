@@ -2,7 +2,7 @@
 #include <nbody/body.hpp>
 #include <vector>
 #include <chrono>
-// #include <omp.h>
+#include <omp.h>
 #define Get_Thread_Number
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
@@ -24,18 +24,19 @@ int main(int argc, char **argv)
 {
     // UNUSED(argc, argv);
 #ifdef Get_Thread_Number
-    if (argc < 4)
+    if (argc < 3)
     {
-        printf("Error: Invalid input! \nUseage: openmp <thread_number> <bodies> <iteration>\n");
+        printf("Error: Invalid input! \nUseage: openmp <bodies> <iteration>\n");
         return 0;
     }
     thread_number = atoi(argv[1]);
     bodies = atoi(argv[2]);
     iter = atoi(argv[3]);
+    pool = BodyPool{static_cast<size_t>(bodies), space, max_mass};
     collide_posX.resize(bodies);
     collide_posY.resize(bodies);
     collide_vx.resize(bodies);
-    collide_vx.resize(bodies);
+    collide_vy.resize(bodies);
 #endif // Get_Thread_Number
     // omp_set_num_threads(thread_number);
     size_t duration = 0;
@@ -48,18 +49,19 @@ int main(int argc, char **argv)
     }
     auto end = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
-    // printf("openmp_thread: %d \n", omp_get_num_threads());
+    printf("openmp_thread: %d \n", thread_number);
     printf("body: %d \n", bodies);
     printf("iterations: %d \n", iter);
-    printf("speed(ns/iter): %lu \n", duration / iter);
+    printf("duration(ns/iter): %lu \n", duration / iter);
 }
 
 void check_and_update()
 {
     pool.clear_acceleration();
-#pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_posX, collide_posY)
+#pragma omp parallel for num_threads(thread_number) shared(pool, collide_vx, collide_vy, collide_posX, collide_posY)
     for (int i = 0; i < bodies; i++)
     {
+        // printf("thread number: %d \n", thread_number);
         collide_posX[i] = 0;
         collide_posY[i] = 0;
         collide_vx[i] = 0;
@@ -71,7 +73,7 @@ void check_and_update()
         }
     }
 #pragma omp barrier
-#pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_posX, collide_posY)
+#pragma omp parallel for num_threads(thread_number) shared(pool, collide_vx, collide_vy, collide_posX, collide_posY)
     for (int i = 0; i < bodies; i++)
     {
         pool.get_body(i).update_for_tick_thread(elapse, space, radius, collide_posX[i], collide_posY[i], collide_vx[i], collide_vy[i]);
