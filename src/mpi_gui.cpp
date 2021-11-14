@@ -133,7 +133,6 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
     scatter_pool(pool, bodies);
 #ifdef DEBUG
     check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity, elapse, space);
-
     sendrecv_results(pool, comm_size, 0, bodies);
 #endif // DEBUG
 }

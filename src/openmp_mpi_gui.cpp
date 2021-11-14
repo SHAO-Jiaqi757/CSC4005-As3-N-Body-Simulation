@@ -13,8 +13,7 @@ void slaves();
 void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies);
 void scatter_pool(BodyPool &pool, int bodies);
 void get_slice(int &start_body, int &end_body, int nbody, int rank, int total_rank); // get subtask, rank r get job from start_body to end_body;
-void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity);
-void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius);
+void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity, double elapse, double space);
 struct Info
 {
     float space;
@@ -97,7 +96,7 @@ int main(int argc, char **argv)
     }
     MPI_Finalize();
 }
-void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity)
+void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity, double elapse, double space)
 {
     int start_body, end_body;
     get_slice(start_body, end_body, nbody, rank, comm_size);
@@ -111,14 +110,6 @@ void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, do
         {
             pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
         }
-    }
-    return;
-}
-void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius)
-{
-#pragma omp parallel for shared(pool)
-    for (int i = 0; i < nbody; i++)
-    {
         pool.get_body(i).update_for_tick(elapse, space, radius);
     }
     return;
@@ -140,13 +131,9 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
 
     pool.clear_acceleration();
     scatter_pool(pool, bodies);
-    // step 1;
 #ifdef DEBUG
-    check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity);
-
+    check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity, elapse, space);
     sendrecv_results(pool, comm_size, 0, bodies);
-    // step2;
-    update_for_tick_mpi(bodies, pool, elapse, space, radius);
 #endif // DEBUG
 }
 void slaves()
@@ -168,7 +155,7 @@ void slaves()
 
 #ifdef DEBUG
     // update pool.ax, pool.ay and record collision in collide_vx, collide_vy, collide_x, collide_y;
-    check_and_update_mpi(rank, bodies, comm_size, pool, globalInfo.radius, globalInfo.gravity);
+    check_and_update_mpi(rank, bodies, comm_size, pool, globalInfo.radius, globalInfo.gravity, globalInfo.elapse, globalInfo.space);
     // send result to rank 0;
     sendrecv_results(pool, comm_size, rank, bodies);
 #endif // DEBUG
