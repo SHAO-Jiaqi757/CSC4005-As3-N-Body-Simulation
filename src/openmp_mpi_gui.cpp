@@ -100,17 +100,23 @@ void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, do
 {
     int start_body, end_body;
     get_slice(start_body, end_body, nbody, rank, comm_size);
-
+    std::vector<double> collide_x(nbody), collide_y(nbody), collide_vy(nbody), collide_vx(nbody);
     if (start_body >= end_body)
         return;
-#pragma omp parallel for shared(pool)
+#pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_x, collide_y)
     for (int i = start_body; i < end_body; i++)
     {
         for (int j = 0; j < nbody; j++)
         {
-            pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
+            if (i == j)
+                continue;
+            pool.check_and_update_thread(pool.get_body(i), pool.get_body(j), radius, gravity, collide_x, collide_y, collide_vx, collide_vy);
         }
-        pool.get_body(i).update_for_tick(elapse, space, radius);
+    }
+#pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_x, collide_y)
+    for (int i = start_body; i < end_body; i++)
+    {
+        pool.get_body(i).update_for_tick_thread(elapse, space, radius, collide_x[i], collide_y[i], collide_vx[i], collide_vy[i]);
     }
     return;
 }
