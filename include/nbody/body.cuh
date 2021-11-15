@@ -25,13 +25,13 @@ public:
     // provides in this way so that
     // it is easier for you to send a the vector with MPI
     static const size_t max_size = 500; // max body number is 500 for benchmark
-    static double x[max_size];
-    static double y[max_size];
-    static double vx[max_size];
-    static double vy[max_size];
-    static double ax[max_size];
-    static double ay[max_size];
-    static double m[max_size];
+    double x[max_size];
+    double y[max_size];
+    double vx[max_size];
+    double vy[max_size];
+    double ax[max_size];
+    double ay[max_size];
+    double m[max_size];
     static double collide_x[max_size];
     static double collide_y[max_size];
     static double collide_vx[max_size];
