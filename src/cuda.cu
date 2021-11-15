@@ -26,10 +26,7 @@ __global__ void check_and_update()
     get_slice(start_body, end_body, thread_id, thread_number);
     for (size_t i = (size_t)start_body; i < (size_t)end_body; i++)
     {
-        pool->collide_vy[i] = 0;
-        pool->collide_y[i] = 0;
-        pool->collide_vx[i] = 0;
-        pool->collide_x[i] = 0;
+        pool->clear_collision(i);
         for (size_t j = 0; j < pool->size; ++j)
         {
             if (i != j)

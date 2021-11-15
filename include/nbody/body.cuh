@@ -1,3 +1,4 @@
+#pragma once
 #include <cuda_runtime.h>
 #include <random>
 
@@ -32,10 +33,10 @@ public:
     double ax[max_size];
     double ay[max_size];
     double m[max_size];
-    static double collide_x[max_size];
-    static double collide_y[max_size];
-    static double collide_vx[max_size];
-    static double collide_vy[max_size];
+    double collide_x[max_size];
+    double collide_y[max_size];
+    double collide_vx[max_size];
+    double collide_vy[max_size];
     // so the movements of bodies are calculated discretely.
     // if after the collision, we do not separate the bodies a little bit, it may
     // results in strange outcomes like infinite acceleration.
@@ -213,6 +214,14 @@ public:
             ay[i] = 0;
         }
     }
+    __device__ __host__ void clear_collision(size_t i)
+    {
+
+        collide_y[i] = 0;
+        collide_x[i] = 0;
+        collide_vx[i] = 0;
+        collide_vy[i] = 0;
+    }
 
     __device__ __host__ static void check_and_update_thread(Body i, Body j, double radius, double gravity)
     {
@@ -233,12 +242,12 @@ public:
         {
             auto dot_prod = delta_x * (i.get_vx() - j.get_vx()) + delta_y * (i.get_vy() - j.get_vy());
             auto scalar = 2 / (i.get_m() + j.get_m()) * dot_prod / distance_square;
-            collide_vx[i.index] -= scalar * delta_x * j.get_m();
-            collide_vy[i.index] -= scalar * delta_y * j.get_m();
+            i.get_dvy() -= scalar * delta_x * j.get_m();
+            i.get_dvx() -= scalar * delta_y * j.get_m();
             // i.get_vx() -= scalar * delta_x * j.get_m();
             // i.get_vy() -= scalar * delta_y * j.get_m();
-            collide_x[i.index] += delta_x / distance * ratio * radius / 2.0;
-            collide_y[i.index] += delta_y / distance * ratio * radius / 2.0;
+            i.get_dx() += delta_x / distance * ratio * radius / 2.0;
+            i.get_dy() += delta_y / distance * ratio * radius / 2.0;
         }
         else
         {
