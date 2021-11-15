@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/core.dir/src/pthread_barrier.c.o"
-  "CMakeFiles/core.dir/src/pthread_barrier.c.o.d"
   "libcore.a"
   "libcore.pdb"
 )

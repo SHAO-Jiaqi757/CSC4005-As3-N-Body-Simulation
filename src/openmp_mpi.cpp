@@ -2,7 +2,7 @@
 #include <nbody/body.hpp>
 #include <mpi.h>
 #include <chrono>
-
+#include <omp.h>
 #define DEBUG
 
 template <typename... Args>
@@ -12,8 +12,8 @@ int slaves(int comm_size);
 void sendrecv_results(BodyPool &pool, int comm_size, int rank, int bodies);
 void scatter_pool(BodyPool &pool, int bodies);
 void get_slice(int &start_body, int &end_body, int nbody, int rank, int total_rank); // get subtask, rank r get job from start_body to end_body;
-void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity);
-void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius);
+void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity, double elapse, double space);
+int thread_number;
 struct Info
 {
     float space;
@@ -53,12 +53,14 @@ int main(int argc, char **argv)
         while (current_iter > 0)
         {
             BodyPool pool(static_cast<size_t>(bodies), space, max_mass);
+            current_iter--;
             master(pool, max_mass, bodies, elapse, gravity, space, radius, current_iter, comm_size);
         }
         auto end = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
 
         printf("cores(omp+mpi): %d \n", comm_size);
+        printf("openmp_thread: %d \n", thread_number);
         printf("body: %d \n", bodies);
         printf("iterations: %d \n", iter);
         printf("duration(ns/iter): %lu \n", duration / iter);
@@ -74,36 +76,35 @@ int main(int argc, char **argv)
     MPI_Finalize();
 }
 
-void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity)
+void check_and_update_mpi(int rank, int nbody, int comm_size, BodyPool &pool, double radius, double gravity, double elapse, double space)
 {
     int start_body, end_body;
     get_slice(start_body, end_body, nbody, rank, comm_size);
-
+    std::vector<double> collide_x(nbody), collide_y(nbody), collide_vy(nbody), collide_vx(nbody);
     if (start_body >= end_body)
         return;
-#pragma omp parallel for shared(pool)
+#pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_x, collide_y)
     for (int i = start_body; i < end_body; i++)
     {
         for (int j = 0; j < nbody; j++)
         {
-            pool.check_and_update(pool.get_body(i), pool.get_body(j), radius, gravity);
+            if (i == j)
+                continue;
+            pool.check_and_update_thread(pool.get_body(i), pool.get_body(j), radius, gravity, collide_x, collide_y, collide_vx, collide_vy);
         }
     }
-    return;
-}
-void update_for_tick_mpi(int nbody, BodyPool &pool, double elapse, double space, double radius)
-{
-#pragma omp parallel for shared(pool)
-    for (int i = 0; i < nbody; i++)
+#pragma omp parallel for shared(pool, collide_vx, collide_vy, collide_x, collide_y)
+    for (int i = start_body; i < end_body; i++)
     {
-        pool.get_body(i).update_for_tick(elapse, space, radius);
+        thread_number = omp_get_num_threads();
+        pool.get_body(i).update_for_tick_thread(elapse, space, radius, collide_x[i], collide_y[i], collide_vx[i], collide_vy[i]);
     }
     return;
 }
 
 void master(BodyPool &pool, float max_mass, int bodies, float elapse, float gravity, float space, float radius, int &iter, int comm_size)
 {
-    MPI_Datatype MPI_BodyPool;
+
     MPI_Datatype MPI_Info;
 
     MPI_Type_contiguous(7, MPI_FLOAT, &MPI_Info);
@@ -117,12 +118,10 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
     scatter_pool(pool, bodies);
 // step 1;
 #ifdef DEBUG
-    check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity);
+    check_and_update_mpi(0, bodies, comm_size, pool, radius, gravity, elapse, space);
 
     sendrecv_results(pool, comm_size, 0, bodies);
     // step2;
-    update_for_tick_mpi(bodies, pool, elapse, space, radius);
-    iter--;
 #endif // DEBUG
 }
 int slaves(int comm_size)
@@ -134,8 +133,9 @@ int slaves(int comm_size)
     MPI_Type_commit(&MPI_Info);
 
     Info globalInfo;
-    int iter = globalInfo.iter;
+
     MPI_Bcast(&globalInfo, 1, MPI_Info, 0, MPI_COMM_WORLD);
+    int iter = globalInfo.iter;
     if (iter <= 0)
         return 0;
     int bodies = globalInfo.bodies;
@@ -144,7 +144,7 @@ int slaves(int comm_size)
     scatter_pool(pool, bodies); // send pool, data is ready for calculation
 
 #ifdef DEBUG
-    check_and_update_mpi(rank, bodies, comm_size, pool, globalInfo.radius, globalInfo.gravity);
+    check_and_update_mpi(rank, bodies, comm_size, pool, globalInfo.radius, globalInfo.gravity, globalInfo.elapse, globalInfo.space);
     // send result to rank 0;
     sendrecv_results(pool, comm_size, rank, bodies);
 #endif // DEBUG

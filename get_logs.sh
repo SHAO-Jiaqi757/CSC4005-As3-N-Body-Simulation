@@ -1,1 +1,1 @@
-rsync -r csc4005_group:/pvfsmnt/119010256/As3_bench/result/logs/pthread* ./result/logs
+rsync -r csc4005_group:/pvfsmnt/119010256/As3_bench/result/logs/ ./result/logs
