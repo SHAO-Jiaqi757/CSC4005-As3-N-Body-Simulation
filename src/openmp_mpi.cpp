@@ -58,9 +58,8 @@ int main(int argc, char **argv)
         }
         auto end = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
-
-        printf("cores(omp+mpi): %d \n", comm_size);
         printf("openmp_thread: %d \n", thread_number);
+        printf("cores(omp+mpi): %d \n", comm_size);
         printf("body: %d \n", bodies);
         printf("iterations: %d \n", iter);
         printf("duration(ns/iter): %lu \n", duration / iter);

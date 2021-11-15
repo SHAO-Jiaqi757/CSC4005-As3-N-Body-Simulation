@@ -25,17 +25,17 @@ public:
     // provides in this way so that
     // it is easier for you to send a the vector with MPI
     static const size_t max_size = 500; // max body number is 500 for benchmark
-    double x[max_size];
-    double y[max_size];
-    double vx[max_size];
-    double vy[max_size];
-    double ax[max_size];
-    double ay[max_size];
-    double m[max_size];
-    double collide_x[max_size];
-    double collide_y[max_size];
-    double collide_vx[max_size];
-    double collide_vy[max_size];
+    static double x[max_size];
+    static double y[max_size];
+    static double vx[max_size];
+    static double vy[max_size];
+    static double ax[max_size];
+    static double ay[max_size];
+    static double m[max_size];
+    static double collide_x[max_size];
+    static double collide_y[max_size];
+    static double collide_vx[max_size];
+    static double collide_vy[max_size];
     // so the movements of bodies are calculated discretely.
     // if after the collision, we do not separate the bodies a little bit, it may
     // results in strange outcomes like infinite acceleration.
@@ -53,85 +53,85 @@ public:
         __device__ __host__ Body(size_t index, BodyPool &pool) : index(index), pool(pool) {}
 
     public:
-        __device__ double &get_x()
+        __device__ __host__ double &get_x()
         {
             return pool.x[index];
         }
-        __device__ double &get_dx()
+        __device__ __host__ double &get_dx()
         {
             return pool.collide_x[index];
         }
-        __device__ double &get_dy()
+        __device__ __host__ double &get_dy()
         {
             return pool.collide_y[index];
         }
-        __device__ double &get_dvx()
+        __device__ __host__ double &get_dvx()
         {
             return pool.collide_vx[index];
         }
-        __device__ double &get_dvy()
+        __device__ __host__ double &get_dvy()
         {
-            return pool.collide_dvy[index];
+            return pool.collide_vy[index];
         }
-        __device__ double &get_y()
+        __device__ __host__ double &get_y()
         {
             return pool.y[index];
         }
 
-        __device__ double &get_vx()
+        __device__ __host__ double &get_vx()
         {
             return pool.vx[index];
         }
 
-        __device__ double &get_vy()
+        __device__ __host__ double &get_vy()
         {
             return pool.vy[index];
         }
 
-        __device__ double &get_ax()
+        __device__ __host__ double &get_ax()
         {
             return pool.ax[index];
         }
 
-        __device__ double &get_ay()
+        __device__ __host__ double &get_ay()
         {
             return pool.ay[index];
         }
 
-        __device__ double &get_m()
+        __device__ __host__ double &get_m()
         {
             return pool.m[index];
         }
 
-        __device__ double distance_square(Body &that)
+        __device__ __host__ double distance_square(Body &that)
         {
             auto delta_x = get_x() - that.get_x();
             auto delta_y = get_y() - that.get_y();
             return delta_x * delta_x + delta_y * delta_y;
         }
 
-        __device__ double distance(Body &that)
+        __device__ __host__ double distance(Body &that)
         {
             return std::sqrt(distance_square(that));
         }
 
-        __device__ double delta_x(Body &that)
+        __device__ __host__ double delta_x(Body &that)
         {
             return get_x() - that.get_x();
         }
 
-        __device__ double delta_y(Body &that)
+        __device__ __host__ double delta_y(Body &that)
         {
             return get_y() - that.get_y();
         }
 
-        __device__ bool collide(Body &that, double radius)
+        __device__ __host__ bool collide(Body &that, double radius)
         {
             return distance_square(that) <= radius * radius;
         }
 
         // collision with wall
-        __device__ void handle_wall_collision(double position_range, double radius)
+        __device__ __host__ void handle_wall_collision(double position_range, double radius)
         {
             bool flag = false;
             if (get_x() <= radius)
@@ -166,7 +166,7 @@ public:
             }
         }
 
-        __device__ void update_for_tick_thread(
+        __device__ __host__ void update_for_tick_thread(
             double elapse,
             double position_range,
             double radius)
@@ -200,12 +200,12 @@ public:
         }
     }
 
-    __device__ Body get_body(size_t index)
+    __device__ __host__ Body get_body(size_t index)
     {
         return {index, *this};
     }
 
-    __device__ void clear_acceleration()
+    __device__ __host__ void clear_acceleration()
     {
         for (size_t i = 0; i < size; i++)
         {
@@ -214,7 +214,7 @@ public:
         }
     }
 
-    __device__ static void check_and_update_thread(Body i, Body j, double radius, double gravity)
+    __device__ __host__ static void check_and_update_thread(Body i, Body j, double radius, double gravity)
     {
         auto delta_x = i.delta_x(j);
         auto delta_y = i.delta_y(j);

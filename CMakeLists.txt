@@ -44,8 +44,8 @@ target_link_libraries(openmp_mpi  ${OpenMP_CXX_LIBRARIES})
 target_compile_options(sequential PRIVATE -Wextra -Wpedantic)
 target_compile_options(mpi PRIVATE -Wextra -Wpedantic)
 target_compile_options(pthread PRIVATE -Wextra -Wpedantic)
-target_compile_options(openmp PRIVATE -Wextra -Wpedantic)
-target_compile_options(openmp_mpi PRIVATE -Wextra -Wpedantic)
+target_compile_options(openmp PRIVATE -Wall -Wextra -Wpedantic)
+target_compile_options(openmp_mpi PRIVATE -Wall -Wextra -Wpedantic)
 
 target_compile_definitions(core PUBLIC -DImDrawIdx=unsigned)
 
