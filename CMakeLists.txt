@@ -7,7 +7,6 @@ find_package(SDL2 REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(MPI REQUIRED)
 find_package(Threads REQUIRED)
-set(CMAKE_CXX_STANDARD 20)
 set(OpenGL_GL_PREFERENCE "GLVND")
 find_package(OpenGL REQUIRED)
 
@@ -33,7 +32,7 @@ add_executable(sequential_gui src/sequential_gui.cpp src/graphic.cpp )
 add_executable(mpi_gui src/mpi_gui.cpp src/graphic.cpp )
 add_executable(pthread_gui src/pthread_gui.cpp src/graphic.cpp src/pthread_barrier.c )
 add_executable(openmp_gui src/openmp_gui.cpp src/graphic.cpp )
-add_executable(sequential_gui src/openmp_mpi_gui.cpp src/graphic.cpp )
+add_executable(openmp_mpi_gui src/openmp_mpi_gui.cpp src/graphic.cpp )
 
 
 get_filename_component(FONT_PATH imgui/misc/fonts/DroidSans.ttf ABSOLUTE)
@@ -51,8 +50,8 @@ target_link_libraries(openmp_mpi_gui  ${OpenMP_CXX_LIBRARIES})
 target_compile_options(sequential_gui PRIVATE -Wextra -Wpedantic)
 target_compile_options(mpi_gui PRIVATE -Wextra -Wpedantic)
 target_compile_options(pthread_gui PRIVATE -Wextra -Wpedantic)
-target_compile_options(openmp_gui PRIVATE -Wextra -Wpedantic)
-target_compile_options(openmp_mpi_gui PRIVATE -Wextra -Wpedantic)
+target_compile_options(openmp_gui PRIVATE -Wall -Wextra -Wpedantic)
+target_compile_options(openmp_mpi_gui PRIVATE -Wall -Wextra -Wpedantic)
 
 target_compile_definitions(core PUBLIC -DImDrawIdx=unsigned)
 
@@ -60,10 +59,25 @@ target_compile_definitions(sequential_gui PRIVATE -DFONT_PATH=\"${FONT_PATH}\")
 target_compile_definitions(mpi_gui PRIVATE -DFONT_PATH=\"${FONT_PATH}\")
 if (WIN32)
     target_link_options(sequential_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-        target_link_options(mpi_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-        target_link_options(pthread_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-                target_link_options(openmp_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
-                target_link_options(openmp_mpi_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
+    target_link_options(mpi_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
+    target_link_options(pthread_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
+    target_link_options(openmp_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
+    target_link_options(openmp_mpi_gui BEFORE PRIVATE -lmingw32 -lSDL2main -lSDL2 -mwindows)
 
 
+endif()
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    message("release mode include cuda")
+    enable_language(CUDA)
+    set(CMAKE_CUDA_STANDARD 14)
+    set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -ccbin=/opt/rh/devtoolset-10/root/usr/bin/gcc -gencode=arch=compute_75,code=[sm_75,compute_75]")
+    add_executable(cuda_gui src/cuda_gui.cu src/graphic.cpp)
+    set_target_properties(cuda_gui PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+    target_link_libraries(cuda_gui core)
+    set_target_properties(
+       cuda_gui
+        PROPERTIES
+        CUDA_SEPARABLE_COMPILATION ON
+        CUDA_ARCHITECTURES OFF
+        )
 endif()
