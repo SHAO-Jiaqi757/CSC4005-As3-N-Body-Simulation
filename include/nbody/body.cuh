@@ -25,7 +25,7 @@ class BodyPool : public Managed
 public:
     // provides in this way so that
     // it is easier for you to send a the vector with MPI
-    static const size_t max_size = 500; // max body number is 500 for benchmark
+    static const size_t max_size = 1000; // max body number is 500 for benchmark
     double x[max_size];
     double y[max_size];
     double vx[max_size];
@@ -130,6 +130,13 @@ public:
         {
             return distance_square(that) <= radius * radius;
         }
+        __device__ void clear_collision()
+        {
+            get_dvy() = 0;
+            get_dvx() = 0;
+            get_dx() = 0;
+            get_dy() = 0;
+        }
 
         // collision with wall
         __device__ __host__ void handle_wall_collision(double position_range, double radius)
@@ -214,17 +221,10 @@ public:
             ay[i] = 0;
         }
     }
-    __device__ __host__ void clear_collision(size_t i)
-    {
-
-        collide_y[i] = 0;
-        collide_x[i] = 0;
-        collide_vx[i] = 0;
-        collide_vy[i] = 0;
-    }
 
     __device__ __host__ static void check_and_update_thread(Body i, Body j, double radius, double gravity)
     {
+        // printf("update\n");
         auto delta_x = i.delta_x(j);
         auto delta_y = i.delta_y(j);
         auto distance_square = i.distance_square(j);

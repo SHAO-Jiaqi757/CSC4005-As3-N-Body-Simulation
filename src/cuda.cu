@@ -3,7 +3,8 @@
 #include <vector>
 #include <cuda_runtime.h>
 #include <iostream>
-
+#include <chrono>
+#define DEBUG
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
 __device__ void get_slice(int &start_body, int &end_body, int thread_id, int thread_number);
@@ -18,15 +19,16 @@ __device__ __managed__ int thread_number;
 
 __global__ void check_and_update()
 {
-    size_t thread_id = threadIdx.x;
-#ifdef DEBUG
-    printf("threadIdx: %zd\n", thread_id);
-#endif
+    int thread_id = threadIdx.x;
+
     int start_body, end_body;
     get_slice(start_body, end_body, thread_id, thread_number);
+#ifdef DEBUG
+    printf("threadIdx: %d, start: %d, end: %d\n", thread_id, start_body, end_body);
+#endif
     for (size_t i = (size_t)start_body; i < (size_t)end_body; i++)
     {
-        pool->clear_collision(i);
+        pool->get_body(i).clear_collision();
         for (size_t j = 0; j < pool->size; ++j)
         {
             if (i != j)
@@ -42,7 +44,6 @@ __global__ void check_and_update()
 int main(int argc, char **argv)
 {
     UNUSED(argc, argv);
-    pool = new BodyPool(static_cast<size_t>(bodies), space, max_mass);
     if (argc < 4)
     {
         printf("Error: Invalid Inputs \nUseage: pthread <thread_number> <bodies> <iteration> \n");
@@ -50,14 +51,38 @@ int main(int argc, char **argv)
     }
     thread_number = atoi(argv[1]);
     bodies = atoi(argv[2]);
+
     int iter = atoi(argv[3]);
+    int cur_iter = iter;
+    pool = new BodyPool(static_cast<size_t>(bodies), space, max_mass);
 
     pool->clear_acceleration();
-    check_and_update<<<1, bodies / thread_number>>>();
-    cudaDeviceSynchronize();
+    auto begin = std::chrono::high_resolution_clock::now();
+    while (cur_iter > 0)
+    {
+        check_and_update<<<1, bodies / thread_number>>>();
+        cudaDeviceSynchronize();
 
-    delete pool;
-    cudaDeviceReset();
+        delete pool;
+        cudaDeviceReset();
+        cur_iter--;
+#ifdef DEBUG
+        for (size_t i = 0; i < pool->size; i++)
+        {
+            printf("%f ", pool->ax[i]);
+        }
+        printf("\n");
+#endif
+    }
+
+    auto end = std::chrono::high_resolution_clock::now();
+    double duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
+
+    printf("thread_number(cuda): %d \n", thread_number);
+    printf("body: %d \n", bodies);
+    printf("iterations: %d \n", iter);
+    printf("duration(ns/iter): %lu \n", duration / iter);
+
     return 0;
 }
 
