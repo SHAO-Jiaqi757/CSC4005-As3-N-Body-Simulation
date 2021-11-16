@@ -101,8 +101,8 @@ void *check_and_update_thread(void *args)
     int thread_id = *((int *)args);
     int start_body, end_body;
     get_slice(start_body, end_body, thread_id, thread_number);
-    if (start_body >= end_body)
-        return NULL;
+    // if (start_body >= end_body)
+    //     return NULL;
     // printf("I am thread %d, start body: %d, end body: %d \n (pool.size: %d)", thread_id, start_body, end_body, n);
     for (size_t i = (size_t)start_body; i < (size_t)end_body; i++)
     {

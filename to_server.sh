@@ -1,0 +1,1 @@
+rsync -a ./ csc4005_group:/pvfsmnt/119010256/As3_bench/
