@@ -4,7 +4,7 @@
 #include <cuda_runtime.h>
 #include <iostream>
 #include <chrono>
-#define DEBUG
+// #define DEBUG
 template <typename... Args>
 void UNUSED(Args &&...args [[maybe_unused]]) {}
 __device__ void get_slice(int &start_body, int &end_body, int thread_id, int thread_number);
@@ -56,15 +56,13 @@ int main(int argc, char **argv)
     int cur_iter = iter;
     pool = new BodyPool(static_cast<size_t>(bodies), space, max_mass);
 
-    pool->clear_acceleration();
     auto begin = std::chrono::high_resolution_clock::now();
     while (cur_iter > 0)
     {
-        check_and_update<<<1, bodies / thread_number>>>();
+        pool->clear_acceleration();
+        check_and_update<<<1, thread_number>>>();
         cudaDeviceSynchronize();
 
-        delete pool;
-        cudaDeviceReset();
         cur_iter--;
 #ifdef DEBUG
         for (size_t i = 0; i < pool->size; i++)
@@ -76,13 +74,16 @@ int main(int argc, char **argv)
     }
 
     auto end = std::chrono::high_resolution_clock::now();
-    double duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
+    auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin).count();
 
     printf("thread_number(cuda): %d \n", thread_number);
     printf("body: %d \n", bodies);
     printf("iterations: %d \n", iter);
-    printf("duration(ns/iter): %lu \n", duration / iter);
+    std::cout << "duration(ns/iter): " << duration / iter << std::endl;
+    // printf("duration(ns/iter): %lu \n", duration / iter);
 
+    delete pool;
+    cudaDeviceReset();
     return 0;
 }
 

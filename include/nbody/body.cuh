@@ -1,7 +1,7 @@
 #pragma once
 #include <cuda_runtime.h>
 #include <random>
-
+// #define DEBUG
 class Managed
 {
 public:
@@ -256,5 +256,8 @@ public:
             i.get_ax() -= scalar * delta_x * j.get_m();
             i.get_ay() -= scalar * delta_y * j.get_m();
         }
+#ifdef DEBUG
+        printf("body(%ul): ax=%f, ay=%f", i.index, i.get_ax(), i.get_ay());
+#endif
     }
 };
