@@ -8,8 +8,8 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 endif()
 find_package(SDL2 REQUIRED)
 find_package(Freetype REQUIRED)
-# find_package(MPI REQUIRED)
-# find_package(Threads REQUIRED)
+find_package(MPI REQUIRED)
+find_package(Threads REQUIRED)
 set(OpenGL_GL_PREFERENCE "GLVND")
 find_package(OpenGL REQUIRED)
 
@@ -19,7 +19,7 @@ include_directories(
         imgui/backends
         ${SDL2_INCLUDE_DIRS}
         ${FREETYPE_INCLUDE_DIRS}
-        # ${MPI_CXX_INCLUDE_DIRS}
+        ${MPI_CXX_INCLUDE_DIRS}
         )
 
 file(GLOB IMGUI_SRC
