@@ -3,10 +3,11 @@
 #include <cstring>
 #include <nbody/body.hpp>
 
-template <typename ...Args>
-void UNUSED(Args&&... args [[maybe_unused]]) {}
+template <typename... Args>
+void UNUSED(Args &&...args [[maybe_unused]]) {}
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     UNUSED(argc, argv);
     static float gravity = 100;
     static float space = 800;
@@ -19,12 +20,13 @@ int main(int argc, char **argv) {
     static float current_max_mass = max_mass;
     static int current_bodies = bodies;
     BodyPool pool(static_cast<size_t>(bodies), space, max_mass);
-    graphic::GraphicContext context{"Assignment 2"};
-    context.run([&](graphic::GraphicContext *context [[maybe_unused]], SDL_Window *) {
+    graphic::GraphicContext context{"Assignment 3"};
+    context.run([&](graphic::GraphicContext *context [[maybe_unused]], SDL_Window *)
+                {
         auto io = ImGui::GetIO();
         ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
         ImGui::SetNextWindowSize(io.DisplaySize);
-        ImGui::Begin("Assignment 2", nullptr,
+        ImGui::Begin("Assignment 3", nullptr,
                      ImGuiWindowFlags_NoMove
                      | ImGuiWindowFlags_NoCollapse
                      | ImGuiWindowFlags_NoTitleBar
@@ -55,6 +57,5 @@ int main(int argc, char **argv) {
                 draw_list->AddCircleFilled(ImVec2(x, y), radius, ImColor{color});
             }
         }
-        ImGui::End();
-    });
+        ImGui::End(); });
 }

@@ -47,13 +47,13 @@ int main(int argc, char **argv)
 
         BodyPool pool(static_cast<size_t>(bodies), space, max_mass);
         // MPI_Bcast(&pool, 1, MPI_BodyPool, 0, comm);
-        graphic::GraphicContext context{"Assignment 2"};
+        graphic::GraphicContext context{"Assignment 3"};
         context.run([&](graphic::GraphicContext *context [[maybe_unused]], SDL_Window *)
                     {
         auto io = ImGui::GetIO();
         ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f));
         ImGui::SetNextWindowSize(io.DisplaySize);
-        ImGui::Begin("Assignment 2", nullptr,
+        ImGui::Begin("Assignment 3", nullptr,
                      ImGuiWindowFlags_NoMove
                      | ImGuiWindowFlags_NoCollapse
                      | ImGuiWindowFlags_NoTitleBar
