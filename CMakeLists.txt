@@ -2,11 +2,14 @@ cmake_minimum_required(VERSION 3.2)
 project(csc4005_imgui)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "-fsanitize=thread")
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message("Debug mode: add race condition detector")
+    set(CMAKE_CXX_FLAGS "-fsanitize=thread")
+endif()
 find_package(SDL2 REQUIRED)
 find_package(Freetype REQUIRED)
-find_package(MPI REQUIRED)
-find_package(Threads REQUIRED)
+# find_package(MPI REQUIRED)
+# find_package(Threads REQUIRED)
 set(OpenGL_GL_PREFERENCE "GLVND")
 find_package(OpenGL REQUIRED)
 
@@ -16,7 +19,8 @@ include_directories(
         imgui/backends
         ${SDL2_INCLUDE_DIRS}
         ${FREETYPE_INCLUDE_DIRS}
-        ${MPI_CXX_INCLUDE_DIRS})
+        # ${MPI_CXX_INCLUDE_DIRS}
+        )
 
 file(GLOB IMGUI_SRC
         imgui/*.cpp
@@ -30,7 +34,7 @@ add_library(core STATIC ${IMGUI_SRC} src/pthread_barrier.c)
 
 add_executable(sequential_gui src/sequential_gui.cpp src/graphic.cpp )
 add_executable(mpi_gui src/mpi_gui.cpp src/graphic.cpp )
-add_executable(pthread_gui src/pthread_gui.cpp src/graphic.cpp src/pthread_barrier.c )
+add_executable(pthread_gui src/pthread_gui.cpp src/graphic.cpp )
 add_executable(openmp_gui src/openmp_gui.cpp src/graphic.cpp )
 add_executable(openmp_mpi_gui src/openmp_mpi_gui.cpp src/graphic.cpp )
 
@@ -71,13 +75,13 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
     enable_language(CUDA)
     set(CMAKE_CUDA_STANDARD 14)
     set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -ccbin=/opt/rh/devtoolset-10/root/usr/bin/gcc -gencode=arch=compute_75,code=[sm_75,compute_75]")
-    add_executable(cuda_gui src/cuda_gui.cu src/graphic.cpp)
-    set_target_properties(cuda_gui PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-    target_link_libraries(cuda_gui core)
+    add_executable(cuda_imgui src/graphic.cpp src/cuda_gui.cu)
+    target_link_libraries(cuda_imgui core)
     set_target_properties(
-       cuda_gui
+        cuda_imgui
         PROPERTIES
         CUDA_SEPARABLE_COMPILATION ON
         CUDA_ARCHITECTURES OFF
         )
+
 endif()

@@ -157,12 +157,12 @@ CMakeFiles/mpi_gui.dir/clean:
 CMakeFiles/pthread_gui.dir/all: CMakeFiles/core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=21,22,23,24 "Built target pthread_gui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=21,22,23 "Built target pthread_gui"
 .PHONY : CMakeFiles/pthread_gui.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/pthread_gui.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 15
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 14
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pthread_gui.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" 0
 .PHONY : CMakeFiles/pthread_gui.dir/rule
@@ -211,7 +211,7 @@ CMakeFiles/openmp_gui.dir/clean:
 CMakeFiles/sequential_gui.dir/all: CMakeFiles/core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sequential_gui.dir/build.make CMakeFiles/sequential_gui.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=25,26,27 "Built target sequential_gui"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/jiaqishao/OneDrive - CUHK-Shenzhen/CSC4005/HW&TUT/HW/As3_119010256/build/CMakeFiles" --progress-num=24,25,26 "Built target sequential_gui"
 .PHONY : CMakeFiles/sequential_gui.dir/all
 
 # Build rule for subdir invocation for target.

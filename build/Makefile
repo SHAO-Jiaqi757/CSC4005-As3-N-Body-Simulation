@@ -576,7 +576,6 @@ src/pthread_barrier.o: src/pthread_barrier.c.o
 
 # target to build an object file
 src/pthread_barrier.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_barrier.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/pthread_barrier.c.o
 .PHONY : src/pthread_barrier.c.o
 
@@ -586,7 +585,6 @@ src/pthread_barrier.i: src/pthread_barrier.c.i
 
 # target to preprocess a source file
 src/pthread_barrier.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_barrier.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/pthread_barrier.c.i
 .PHONY : src/pthread_barrier.c.i
 
@@ -596,7 +594,6 @@ src/pthread_barrier.s: src/pthread_barrier.c.s
 
 # target to generate assembly for a file
 src/pthread_barrier.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pthread_gui.dir/build.make CMakeFiles/pthread_gui.dir/src/pthread_barrier.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/core.dir/build.make CMakeFiles/core.dir/src/pthread_barrier.c.s
 .PHONY : src/pthread_barrier.c.s
 

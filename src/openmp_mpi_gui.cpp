@@ -126,7 +126,6 @@ void master(BodyPool &pool, float max_mass, int bodies, float elapse, float grav
     int comm_size;
     MPI_Comm_size(MPI_COMM_WORLD, &comm_size);
 
-    MPI_Datatype MPI_BodyPool;
     MPI_Datatype MPI_Info;
 
     MPI_Type_contiguous(6, MPI_FLOAT, &MPI_Info);

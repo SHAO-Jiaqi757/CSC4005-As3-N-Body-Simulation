@@ -5,9 +5,8 @@
 #include <cuda_runtime.h>
 // #define Get_Thread_Number
 template <typename... Args>
-void UNUSED(Args &&...args [[maybe_unused]]) {}
-__global__ void check_and_update()
-    __device__ __managed__ float gravity = 100;
+void UNUSED(Args &&...args [[maybe_unused]]);
+__device__ __managed__ float gravity = 100;
 __device__ __managed__ float space = 800;
 __device__ __managed__ float radius = 5;
 __device__ __managed__ int bodies = 200;
@@ -16,9 +15,29 @@ __device__ __managed__ float max_mass = 50;
 __device__ __managed__ BodyPool *pool;
 __device__ __managed__ int thread_number;
 static ImVec4 color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);
+
+__global__ void check_and_update()
+{
+    int thread_id = threadIdx.x;
+    size_t body_indx = thread_id;
+
+#ifdef DEBUG
+    printf("threadIdx: %d, start: %d, end: %d\n", thread_id, start_body, end_body);
+#endif
+    pool->get_body(body_indx).clear_collision();
+    for (size_t j = 0; j < pool->size; ++j)
+    {
+        if (body_indx != j)
+            pool->check_and_update_thread(pool->get_body(body_indx), pool->get_body(j), radius, gravity);
+    }
+    __syncthreads();
+
+    // for (size_t i = start_body; i < end_body; i++)
+    pool->get_body(body_indx).update_for_tick_thread(elapse, space, radius);
+}
 int main(int argc, char **argv)
 {
-    UNUSED(argc, argv);
+    // UNUSED(argc, argv);
 
     static float current_space = space;
     static float current_max_mass = max_mass;
@@ -55,9 +74,9 @@ int main(int argc, char **argv)
             check_and_update<<<1, bodies>>>();
             cudaDeviceSynchronize();
             // drawing...
-            for (size_t i = 0; i < pool.size(); ++i)
+            for (size_t i = 0; i < pool->size; ++i)
             {
-                auto body = pool.get_body(i);
+                auto body = pool->get_body(i);
                 auto x = p.x + static_cast<float>(body.get_x());
                 auto y = p.y + static_cast<float>(body.get_y());
                 draw_list->AddCircleFilled(ImVec2(x, y), radius, ImColor{color});
@@ -66,23 +85,4 @@ int main(int argc, char **argv)
         ImGui::End(); });
     delete pool;
     cudaDeviceReset();
-}
-
-__global__ void check_and_update()
-{
-    int thread_id = threadIdx.x;
-
-#ifdef DEBUG
-    printf("threadIdx: %d, start: %d, end: %d\n", thread_id, start_body, end_body);
-#endif
-    pool->get_body(i).clear_collision();
-    for (size_t j = 0; j < pool->size; ++j)
-    {
-        if (i != j)
-            pool->check_and_update_thread(pool->get_body(i), pool->get_body(j), radius, gravity);
-    }
-    __syncthreads();
-
-    for (size_t i = start_body; i < end_body; i++)
-        pool->get_body(i).update_for_tick_thread(elapse, space, radius);
 }
