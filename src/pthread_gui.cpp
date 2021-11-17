@@ -14,7 +14,7 @@ pthread_barrier_t barrier;
 static float gravity = 100;
 static float space = 800;
 static float radius = 5;
-static int bodies = 20;
+static int bodies = 200;
 std::vector<double> collide_posX(bodies);
 std::vector<double> collide_posY(bodies);
 std::vector<double> collide_vx(bodies);

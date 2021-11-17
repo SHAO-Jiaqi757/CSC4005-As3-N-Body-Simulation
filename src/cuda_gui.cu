@@ -9,7 +9,7 @@ void UNUSED(Args &&...args [[maybe_unused]]);
 __device__ __managed__ float gravity = 100;
 __device__ __managed__ float space = 800;
 __device__ __managed__ float radius = 5;
-__device__ __managed__ int bodies = 200;
+__device__ __managed__ int bodies = 2000;
 __device__ __managed__ float elapse = 0.1;
 __device__ __managed__ float max_mass = 50;
 __device__ __managed__ BodyPool *pool;

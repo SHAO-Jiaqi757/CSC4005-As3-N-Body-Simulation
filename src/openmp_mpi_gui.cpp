@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     static float gravity = 100;
     static float space = 800;
     static float radius = 5;
-    static int bodies = 20;
+    static int bodies = 200;
     static float elapse = 0.001;
     static ImVec4 color = ImVec4(1.0f, 1.0f, 0.4f, 1.0f);
     static float max_mass = 50;
